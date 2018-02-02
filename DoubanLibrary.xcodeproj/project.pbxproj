@@ -8,20 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		7296538D201F0486008CD05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7296538C201F0486008CD05B /* AppDelegate.swift */; };
-		7296538F201F0486008CD05B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7296538E201F0486008CD05B /* ViewController.swift */; };
 		72965392201F0486008CD05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72965390201F0486008CD05B /* Main.storyboard */; };
 		72965394201F0486008CD05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72965393201F0486008CD05B /* Assets.xcassets */; };
 		72965397201F0486008CD05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72965395201F0486008CD05B /* LaunchScreen.storyboard */; };
+		729653A1201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653A0201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift */; };
+		729653A3201F0B7A008CD05B /* LibraryBookTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653A2201F0B7A008CD05B /* LibraryBookTagViewController.swift */; };
+		729653A92020618C008CD05B /* TagBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653A82020618C008CD05B /* TagBookViewController.swift */; };
+		729653AB20209E50008CD05B /* TagBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653AA20209E50008CD05B /* TagBookModel.swift */; };
+		729653B62020AA0F008CD05B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729653B52020AA0F008CD05B /* SwiftyJSON.framework */; };
+		729653B92020B5D7008CD05B /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729653B82020B5D7008CD05B /* Kingfisher.framework */; };
+		729653BB2021997B008CD05B /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729653BA2021997B008CD05B /* Cosmos.framework */; };
+		729653BD202199E0008CD05B /* TagBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 729653BC202199E0008CD05B /* TagBookTableViewCell.xib */; };
+		729653BF20219E4C008CD05B /* TagBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */; };
+		729653C12021AAA2008CD05B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653C02021AAA2008CD05B /* NetworkService.swift */; };
+		D8FD12E1FDF323DF97D2EB46 /* Pods_DoubanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubanLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72965389201F0486008CD05B /* DoubanLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubanLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7296538C201F0486008CD05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7296538E201F0486008CD05B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		72965391201F0486008CD05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72965393201F0486008CD05B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72965396201F0486008CD05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72965398201F0486008CD05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		729653A0201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBookTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		729653A2201F0B7A008CD05B /* LibraryBookTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBookTagViewController.swift; sourceTree = "<group>"; };
+		729653A82020618C008CD05B /* TagBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookViewController.swift; sourceTree = "<group>"; };
+		729653AA20209E50008CD05B /* TagBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookModel.swift; sourceTree = "<group>"; };
+		729653AD2020AA00008CD05B /* i386.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = i386.swiftmodule; sourceTree = "<group>"; };
+		729653AE2020AA00008CD05B /* x86_64.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = x86_64.swiftdoc; sourceTree = "<group>"; };
+		729653AF2020AA00008CD05B /* arm64.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm64.swiftmodule; sourceTree = "<group>"; };
+		729653B02020AA00008CD05B /* x86_64.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = x86_64.swiftmodule; sourceTree = "<group>"; };
+		729653B12020AA00008CD05B /* arm.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.swiftdoc; sourceTree = "<group>"; };
+		729653B22020AA00008CD05B /* i386.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = i386.swiftdoc; sourceTree = "<group>"; };
+		729653B32020AA00008CD05B /* arm.swiftmodule */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.swiftmodule; sourceTree = "<group>"; };
+		729653B42020AA00008CD05B /* arm64.swiftdoc */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm64.swiftdoc; sourceTree = "<group>"; };
+		729653B52020AA0F008CD05B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		729653B82020B5D7008CD05B /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		729653BA2021997B008CD05B /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = Carthage/Build/iOS/Cosmos.framework; sourceTree = "<group>"; };
+		729653BC202199E0008CD05B /* TagBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagBookTableViewCell.xib; sourceTree = "<group>"; };
+		729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookTableViewCell.swift; sourceTree = "<group>"; };
+		729653C02021AAA2008CD05B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CBD4AA6CD236371662613E4C /* Pods-DoubanLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubanLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary.release.xcconfig"; sourceTree = "<group>"; };
+		F3EFB1D19DEB59BC5EF1212F /* Pods-DoubanLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubanLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +59,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729653BB2021997B008CD05B /* Cosmos.framework in Frameworks */,
+				D8FD12E1FDF323DF97D2EB46 /* Pods_DoubanLibrary.framework in Frameworks */,
+				729653B62020AA0F008CD05B /* SwiftyJSON.framework in Frameworks */,
+				729653B92020B5D7008CD05B /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		334A63065FFDA28B88153C09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				729653BA2021997B008CD05B /* Cosmos.framework */,
+				729653B82020B5D7008CD05B /* Kingfisher.framework */,
+				729653B52020AA0F008CD05B /* SwiftyJSON.framework */,
+				729653AC2020AA00008CD05B /* SwiftyJSON.swiftmodule */,
+				251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72965380201F0486008CD05B = {
 			isa = PBXGroup;
 			children = (
 				7296538B201F0486008CD05B /* DoubanLibrary */,
 				7296538A201F0486008CD05B /* Products */,
+				E4C7B07293335BD38EE70864 /* Pods */,
+				334A63065FFDA28B88153C09 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +102,45 @@
 		7296538B201F0486008CD05B /* DoubanLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				729653BC202199E0008CD05B /* TagBookTableViewCell.xib */,
+				729653AA20209E50008CD05B /* TagBookModel.swift */,
+				729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */,
+				729653A82020618C008CD05B /* TagBookViewController.swift */,
+				729653C02021AAA2008CD05B /* NetworkService.swift */,
 				7296538C201F0486008CD05B /* AppDelegate.swift */,
-				7296538E201F0486008CD05B /* ViewController.swift */,
 				72965390201F0486008CD05B /* Main.storyboard */,
+				729653A2201F0B7A008CD05B /* LibraryBookTagViewController.swift */,
+				729653A0201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift */,
 				72965393201F0486008CD05B /* Assets.xcassets */,
 				72965395201F0486008CD05B /* LaunchScreen.storyboard */,
 				72965398201F0486008CD05B /* Info.plist */,
 			);
 			path = DoubanLibrary;
+			sourceTree = "<group>";
+		};
+		729653AC2020AA00008CD05B /* SwiftyJSON.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				729653AD2020AA00008CD05B /* i386.swiftmodule */,
+				729653AE2020AA00008CD05B /* x86_64.swiftdoc */,
+				729653AF2020AA00008CD05B /* arm64.swiftmodule */,
+				729653B02020AA00008CD05B /* x86_64.swiftmodule */,
+				729653B12020AA00008CD05B /* arm.swiftdoc */,
+				729653B22020AA00008CD05B /* i386.swiftdoc */,
+				729653B32020AA00008CD05B /* arm.swiftmodule */,
+				729653B42020AA00008CD05B /* arm64.swiftdoc */,
+			);
+			name = SwiftyJSON.swiftmodule;
+			path = Carthage/Build/iOS/SwiftyJSON.framework/Modules/SwiftyJSON.swiftmodule;
+			sourceTree = "<group>";
+		};
+		E4C7B07293335BD38EE70864 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3EFB1D19DEB59BC5EF1212F /* Pods-DoubanLibrary.debug.xcconfig */,
+				CBD4AA6CD236371662613E4C /* Pods-DoubanLibrary.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +150,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7296539B201F0486008CD05B /* Build configuration list for PBXNativeTarget "DoubanLibrary" */;
 			buildPhases = (
+				E075AB4898C277EAD41C1FD3 /* [CP] Check Pods Manifest.lock */,
 				72965385201F0486008CD05B /* Sources */,
 				72965386201F0486008CD05B /* Frameworks */,
 				72965387201F0486008CD05B /* Resources */,
+				D225181EBDB201704D51B31C /* [CP] Embed Pods Frameworks */,
+				C7101712D044688ABBF00DDF /* [CP] Copy Pods Resources */,
+				729653B72020AA2E008CD05B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -124,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72965397201F0486008CD05B /* LaunchScreen.storyboard in Resources */,
+				729653BD202199E0008CD05B /* TagBookTableViewCell.xib in Resources */,
 				72965394201F0486008CD05B /* Assets.xcassets in Resources */,
 				72965392201F0486008CD05B /* Main.storyboard in Resources */,
 			);
@@ -131,13 +215,95 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		729653B72020AA2E008CD05B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Cosmos.framework",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/Cosmos.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		C7101712D044688ABBF00DDF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D225181EBDB201704D51B31C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E075AB4898C277EAD41C1FD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoubanLibrary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		72965385201F0486008CD05B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7296538F201F0486008CD05B /* ViewController.swift in Sources */,
+				729653A92020618C008CD05B /* TagBookViewController.swift in Sources */,
+				729653A1201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift in Sources */,
 				7296538D201F0486008CD05B /* AppDelegate.swift in Sources */,
+				729653BF20219E4C008CD05B /* TagBookTableViewCell.swift in Sources */,
+				729653AB20209E50008CD05B /* TagBookModel.swift in Sources */,
+				729653A3201F0B7A008CD05B /* LibraryBookTagViewController.swift in Sources */,
+				729653C12021AAA2008CD05B /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +438,15 @@
 		};
 		7296539C201F0486008CD05B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3EFB1D19DEB59BC5EF1212F /* Pods-DoubanLibrary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZ5666T235;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoubanLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DoubanLibrary;
@@ -287,10 +458,15 @@
 		};
 		7296539D201F0486008CD05B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBD4AA6CD236371662613E4C /* Pods-DoubanLibrary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZ5666T235;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoubanLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DoubanLibrary;

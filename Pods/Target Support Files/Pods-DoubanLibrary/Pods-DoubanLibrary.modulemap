@@ -1,0 +1,6 @@
+framework module Pods_DoubanLibrary {
+  umbrella header "Pods-DoubanLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}

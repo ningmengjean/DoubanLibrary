@@ -1,0 +1,21 @@
+{
+  "iOS" : [
+    {
+      "hash" : "417cff0db6f9ac7051a0266184febd29ca8f7511ed6bb149f9e4ff9b91279ab9",
+      "name" : "Cosmos"
+    }
+  ],
+  "commitish" : "14.0.0",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+    {
+      "hash" : "82c7983414c01b020e4ac3de4c384c18c49df5b00b6cf55ada9ce9d5bb74c60e",
+      "name" : "Cosmos"
+    }
+  ],
+  "Mac" : [
+
+  ]
+}
