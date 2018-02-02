@@ -83,9 +83,15 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-ff-OIA">
+                                <rect key="frame" x="169.5" y="315" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hjN-ff-OIA" firstAttribute="centerY" secondItem="2Qu-2c-hyB" secondAttribute="centerY" id="RMP-jo-eQ9"/>
+                            <constraint firstItem="hjN-ff-OIA" firstAttribute="centerX" secondItem="2Qu-2c-hyB" secondAttribute="centerX" id="TWH-on-7hc"/>
                             <constraint firstItem="h78-YW-UTm" firstAttribute="bottom" secondItem="IzG-sl-QyC" secondAttribute="bottom" id="Tfn-34-6hk"/>
                             <constraint firstItem="IzG-sl-QyC" firstAttribute="leading" secondItem="h78-YW-UTm" secondAttribute="leading" id="sfv-om-CwE"/>
                             <constraint firstItem="h78-YW-UTm" firstAttribute="trailing" secondItem="IzG-sl-QyC" secondAttribute="trailing" id="tZy-pz-DpX"/>
@@ -95,6 +101,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hKz-BT-a90"/>
                     <connections>
+                        <outlet property="spinner" destination="hjN-ff-OIA" id="5yB-uV-Bfu"/>
                         <outlet property="tagBookTableView" destination="IzG-sl-QyC" id="Ob0-nm-ruL"/>
                     </connections>
                 </viewController>

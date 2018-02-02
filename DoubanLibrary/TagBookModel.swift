@@ -19,7 +19,7 @@ struct TagBookModel {
         rate = bookArray.map{$0["rating","average"].stringValue}
         numRaters = bookArray.map{$0["rating","numRaters"].intValue}
         summary = bookArray.map{$0["summary"].stringValue}
-        price = bookArray.map{$0["ebook_price"].stringValue}
+        price = bookArray.map{$0["price"].stringValue}
         image = bookArray.map{$0["images","medium"].stringValue}
         count = json["count"].intValue
     }

@@ -21,7 +21,9 @@ class TagBookViewController: UIViewController {
         tagBookTableView.rowHeight = UITableViewAutomaticDimension
         tagBookTableView.estimatedRowHeight = 100.0
     }
-
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBOutlet weak var tagBookTableView: UITableView! {
         didSet {
             tagBookTableView.delegate = self
@@ -59,8 +61,6 @@ class TagBookViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    var result: TagBookModel?
-    
     let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin()])
     
     func getTagBookLibrary(_ tag: String) {
@@ -72,9 +72,9 @@ class TagBookViewController: UIViewController {
                 }
             case .success(let moyaResponse):
                 let json = self.parseJSON(moyaResponse.data)
+                self.spinner.stopAnimating()
                 DispatchQueue.main.async {
-                    self.result = TagBookModel(json: json)
-                    self.tagBookResult = self.result!
+                    self.tagBookResult = TagBookModel(json: json)
                 }
             }
         }
@@ -84,13 +84,14 @@ class TagBookViewController: UIViewController {
 
 extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  (tagBookResult?.count)!
+        return  20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagBookTableViewCell", for: indexPath) as! TagBookTableViewCell
-        let result = tagBookResult
-        cell.configureTagBookTableViewCell(result!,indexPath: indexPath)
+        if let result = tagBookResult {
+            cell.configureTagBookTableViewCell(result,indexPath: indexPath)
+        }
         return cell
     }
     
