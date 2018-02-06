@@ -17,8 +17,9 @@ class TagBookTableViewCell: UITableViewCell {
     @IBOutlet weak var autherLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView! {
         didSet {
+            cosmosView.settings.updateOnTouch = false
             cosmosView.settings.starSize = 15
-            cosmosView.settings.starMargin = 2
+            cosmosView.settings.starMargin = 5
             cosmosView.settings.fillMode = .precise
             cosmosView.settings.filledColor = UIColor.red
             cosmosView.settings.emptyBorderColor = UIColor.red
@@ -29,26 +30,15 @@ class TagBookTableViewCell: UITableViewCell {
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
-    func configureTagBookTableViewCell(_ result: TagBookModel,indexPath: IndexPath) {
-        if let title = result.title[indexPath.row] {
-            titleLabel.text = title
-        }
-        if let auther = result.author[indexPath.row] {
-            autherLabel.text = auther
-        }
-        if let rate = result.rate[indexPath.row] {
-            rateLabel.text = rate
-            cosmosView.rating = Double(rate)!/2.0
-           
-        }
-        if let summary = result.summary[indexPath.row] {
-            summaryLabel.text = summary
-        }
-        if let price = result.price[indexPath.row] {
-            priceLabel.text = price
-        }
-        if let image = result.image[indexPath.row], let url = URL(string: image ){
-            bookImage.kf.setImage(with: url)
+    func configureTagBookTableViewCell(_ result: Book) {
+            titleLabel.text = result.title
+            autherLabel.text = result.author
+            rateLabel.text = String(result.rating.average)
+            cosmosView.rating = result.rating.average/2.0
+            summaryLabel.text = result.summary
+            priceLabel.text = result.price
+        if let image = result.images.mediumImageURL{
+            bookImage.kf.setImage(with: image)
         }
     }
 }

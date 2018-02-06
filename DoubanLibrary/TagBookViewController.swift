@@ -15,12 +15,22 @@ import Cosmos
 
 class TagBookViewController: UIViewController {
     
+    var start = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tagBookTableView.register(UINib(nibName: "TagBookTableViewCell", bundle: nil), forCellReuseIdentifier: "TagBookTableViewCell")
         tagBookTableView.rowHeight = UITableViewAutomaticDimension
         tagBookTableView.estimatedRowHeight = 100.0
+        self.tagBookTableView.addSubview(self.refreshControl)
     }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.blue
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        return refreshControl
+    }()
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -31,18 +41,16 @@ class TagBookViewController: UIViewController {
         }
     }
     
-    var tagBookResult: TagBookModel? {
-        didSet {
-            tagBookTableView.reloadData()
-        }
-    }
+    var books = [Book]()
+    
+    var book: Book?
     
     var text: String? {
         didSet {
             guard let text = text else {
                 return
             }
-            getTagBookLibrary(text)
+            getTagBookLibrary(text, start: start)
         }
     }
     
@@ -63,8 +71,8 @@ class TagBookViewController: UIViewController {
     
     let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin()])
     
-    func getTagBookLibrary(_ tag: String) {
-        provider.request(.getTagBookLibrary(tag: text!)) { (result) in
+    func getTagBookLibrary(_ tag: String, start: Int) {
+        provider.request(.getTagBookLibrary(tag: tag, start: start)) { (result) in
             switch result {
             case .failure(_):
                 DispatchQueue.main.async {
@@ -74,24 +82,38 @@ class TagBookViewController: UIViewController {
                 let json = self.parseJSON(moyaResponse.data)
                 self.spinner.stopAnimating()
                 DispatchQueue.main.async {
-                    self.tagBookResult = TagBookModel(json: json)
+                    self.book = Book(json: json)
+                    self.books += json["books"].arrayValue.map { Book(json: $0) }
+                    self.tagBookTableView.reloadData()
                 }
             }
         }
+    }
+    
+    func getMore() {
+        start += 20
+        getTagBookLibrary(text!, start: start)
+    }
+
+    @objc
+    func refresh() {
+        start = 0
+        books = [Book]()
+        getTagBookLibrary(text!, start: start)
+        tagBookTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
 }
 
 extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  20
+        return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagBookTableViewCell", for: indexPath) as! TagBookTableViewCell
-        if let result = tagBookResult {
-            cell.configureTagBookTableViewCell(result,indexPath: indexPath)
-        }
+        cell.configureTagBookTableViewCell(books[indexPath.row])
         return cell
     }
     

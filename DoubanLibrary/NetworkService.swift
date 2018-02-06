@@ -11,7 +11,7 @@ import Foundation
 import Moya
 
 enum NetworkService {
-    case getTagBookLibrary(tag: String)
+    case getTagBookLibrary(tag: String, start: Int)
 }
 
 extension NetworkService: TargetType {
@@ -34,8 +34,8 @@ extension NetworkService: TargetType {
     }
     var task: Task {
         switch self {
-        case .getTagBookLibrary(let name):
-            return .requestParameters(parameters: ["tag": name], encoding: URLEncoding.queryString)
+        case .getTagBookLibrary(let name, let start):
+            return .requestParameters(parameters: ["tag": name, "start": start], encoding: URLEncoding.queryString)
         }
     }
 

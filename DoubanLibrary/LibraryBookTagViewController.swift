@@ -31,8 +31,8 @@ class LibraryBookTagViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? LibraryBookTagCollectionViewCell,segue.identifier == "ShowTagLibrary" {
-            let nvc = segue.destination as! UINavigationController
-            let controller = nvc.visibleViewController as! TagBookViewController
+           
+            let controller = segue.destination as! TagBookViewController
             if let title = cell.tagButton.currentTitle {
                 controller.text = title
             }
