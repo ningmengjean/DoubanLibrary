@@ -11,10 +11,10 @@ import Foundation
 import SwiftyJSON
 import Moya
 import Cosmos
-
+import KRPullLoader
 
 class TagBookViewController: UIViewController {
-    
+
     var start = 0
     
     override func viewDidLoad() {
@@ -22,6 +22,12 @@ class TagBookViewController: UIViewController {
         tagBookTableView.register(UINib(nibName: "TagBookTableViewCell", bundle: nil), forCellReuseIdentifier: "TagBookTableViewCell")
         tagBookTableView.rowHeight = UITableViewAutomaticDimension
         tagBookTableView.estimatedRowHeight = 100.0
+//        let refreshView = KRPullLoadView()
+//        refreshView.delegate = self
+//        tagBookTableView.addPullLoadableView(refreshView, type: .refresh)
+        let loadMoreView = KRPullLoadView()
+        loadMoreView.delegate = self
+        tagBookTableView.addPullLoadableView(loadMoreView, type: .loadMore)
         self.tagBookTableView.addSubview(self.refreshControl)
     }
     
@@ -116,6 +122,40 @@ extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureTagBookTableViewCell(books[indexPath.row])
         return cell
     }
-    
-    
+}
+
+extension TagBookViewController: KRPullLoadViewDelegate {
+    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+        if type == .loadMore {
+            switch state {
+            case let .loading(completionHandler):
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                    self.getMore()
+                    completionHandler()
+                    self.tagBookTableView.reloadData()
+                }
+            default: break
+            }
+            return
+        }
+        
+        switch state {
+        case .none:
+            pullLoadView.messageLabel.text = ""
+            
+        case let .pulling(offset, threshould):
+            if offset.y > threshould {
+                pullLoadView.messageLabel.text = "Pull more. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            } else {
+                pullLoadView.messageLabel.text = "Release to refresh. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            }
+            
+        case let .loading(completionHandler):
+            pullLoadView.messageLabel.text = "Updating..."
+            //            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+            completionHandler()
+            self.tagBookTableView.reloadData()
+            //            }
+        }
+    }
 }

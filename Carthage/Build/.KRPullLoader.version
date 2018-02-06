@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "46d4e6879f7b815a2826bf8cc978a1e1580d8eb0a62493bd0948081640741884",
+      "name" : "KRPullLoader"
+    }
+  ],
+  "commitish" : "1.1.1",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

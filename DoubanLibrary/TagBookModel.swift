@@ -12,13 +12,13 @@ import SwiftyJSON
 
 struct BookRating {
     let max: Int
-    let numRaters: Int
+    let numRaters: String
     let average: Double
     let min: Int
     
     init(json: JSON) {
         max = json["max"].intValue
-        numRaters = json["numRaters"].intValue
+        numRaters = json["numRaters"].stringValue
         average = json["average"].doubleValue
         min = json["min"].intValue
     }

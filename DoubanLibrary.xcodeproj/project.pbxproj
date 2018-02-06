@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72375B412029E127001F657A /* KRPullLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72375B402029E127001F657A /* KRPullLoader.framework */; };
 		7296538D201F0486008CD05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7296538C201F0486008CD05B /* AppDelegate.swift */; };
 		72965392201F0486008CD05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72965390201F0486008CD05B /* Main.storyboard */; };
 		72965394201F0486008CD05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72965393201F0486008CD05B /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubanLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72375B402029E127001F657A /* KRPullLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRPullLoader.framework; path = Carthage/Build/iOS/KRPullLoader.framework; sourceTree = "<group>"; };
 		72965389201F0486008CD05B /* DoubanLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubanLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7296538C201F0486008CD05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72965391201F0486008CD05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				D8FD12E1FDF323DF97D2EB46 /* Pods_DoubanLibrary.framework in Frameworks */,
 				729653B62020AA0F008CD05B /* SwiftyJSON.framework in Frameworks */,
 				729653B92020B5D7008CD05B /* Kingfisher.framework in Frameworks */,
+				72375B412029E127001F657A /* KRPullLoader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +75,7 @@
 		334A63065FFDA28B88153C09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72375B402029E127001F657A /* KRPullLoader.framework */,
 				729653BA2021997B008CD05B /* Cosmos.framework */,
 				729653B82020B5D7008CD05B /* Kingfisher.framework */,
 				729653B52020AA0F008CD05B /* SwiftyJSON.framework */,
@@ -225,11 +229,13 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Cosmos.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KRPullLoader.framework",
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/Cosmos.framework",
+				"$(DERIVED_FILE_DIR)/Carthage/Build/iOS/KRPullLoader.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

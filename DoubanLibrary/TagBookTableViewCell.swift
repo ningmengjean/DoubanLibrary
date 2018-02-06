@@ -33,8 +33,9 @@ class TagBookTableViewCell: UITableViewCell {
     func configureTagBookTableViewCell(_ result: Book) {
             titleLabel.text = result.title
             autherLabel.text = result.author
-            rateLabel.text = String(result.rating.average)
+            rateLabel.text = "\(result.rating.numRaters) 评价"
             cosmosView.rating = result.rating.average/2.0
+            cosmosView.text = String(result.rating.average)
             summaryLabel.text = result.summary
             priceLabel.text = result.price
         if let image = result.images.mediumImageURL{
