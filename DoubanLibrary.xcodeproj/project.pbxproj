@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		72375B412029E127001F657A /* KRPullLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72375B402029E127001F657A /* KRPullLoader.framework */; };
+		7265BC97202DE40700784E2E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265BC96202DE40700784E2E /* CategoryView.swift */; };
 		7296538D201F0486008CD05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7296538C201F0486008CD05B /* AppDelegate.swift */; };
 		72965392201F0486008CD05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72965390201F0486008CD05B /* Main.storyboard */; };
 		72965394201F0486008CD05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72965393201F0486008CD05B /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubanLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72375B402029E127001F657A /* KRPullLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRPullLoader.framework; path = Carthage/Build/iOS/KRPullLoader.framework; sourceTree = "<group>"; };
+		7265BC96202DE40700784E2E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		72965389201F0486008CD05B /* DoubanLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubanLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7296538C201F0486008CD05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72965391201F0486008CD05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				729653AA20209E50008CD05B /* TagBookModel.swift */,
 				729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */,
 				729653A82020618C008CD05B /* TagBookViewController.swift */,
+				7265BC96202DE40700784E2E /* CategoryView.swift */,
 				729653C02021AAA2008CD05B /* NetworkService.swift */,
 				7296538C201F0486008CD05B /* AppDelegate.swift */,
 				72965390201F0486008CD05B /* Main.storyboard */,
@@ -309,6 +312,7 @@
 				729653BF20219E4C008CD05B /* TagBookTableViewCell.swift in Sources */,
 				729653AB20209E50008CD05B /* TagBookModel.swift in Sources */,
 				729653A3201F0B7A008CD05B /* LibraryBookTagViewController.swift in Sources */,
+				7265BC97202DE40700784E2E /* CategoryView.swift in Sources */,
 				729653C12021AAA2008CD05B /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
