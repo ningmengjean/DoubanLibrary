@@ -13,7 +13,7 @@ import Moya
 import Cosmos
 import KRPullLoader
 
-class TagBookViewController: UIViewController {
+class TagBookViewController: UIViewController, CategoryViewDelegate {
 
     var start = 0
     
@@ -32,6 +32,7 @@ class TagBookViewController: UIViewController {
         categoryButton.setTitleColor(UIColor.blue, for: .normal)
         categoryView = CategoryView(frame: CGRect(x: 0, y: 104, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
+        categoryView.delegate = self 
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -89,6 +90,25 @@ class TagBookViewController: UIViewController {
     let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin()])
     
     func getTagBookLibrary(_ tag: String, start: Int) {
+        provider.request(.getTagBookLibrary(tag: tag, start: start)) { (result) in
+            switch result {
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.showNetworkError()
+                }
+            case .success(let moyaResponse):
+                let json = self.parseJSON(moyaResponse.data)
+                self.spinner.stopAnimating()
+                DispatchQueue.main.async {
+                    self.book = Book(json: json)
+                    self.books += json["books"].arrayValue.map { Book(json: $0) }
+                    self.tagBookTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func getTagBookLibraryFromDetailList(_ tag: String, start: Int) {
         provider.request(.getTagBookLibrary(tag: tag, start: start)) { (result) in
             switch result {
             case .failure(_):
