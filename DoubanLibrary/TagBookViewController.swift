@@ -30,9 +30,9 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         self.tagBookTableView.addSubview(self.refreshControl)
         categoryButton.setTitle(text!, for: .normal)
         categoryButton.setTitleColor(UIColor.blue, for: .normal)
-        categoryView = CategoryView(frame: CGRect(x: 0, y: 104, width: 375, height: 583))
+        categoryView = CategoryView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
-        categoryView.delegate = self 
+        categoryView.delegate = self
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -53,11 +53,36 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         }
     }
     @IBAction func showCategoryView(_ sender: UIButton) {
+        if categoryViewIsOnTheTop {
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlDown,
+                           animations: { self.categoryView.frame = CGRect(x: 0, y: 104, width: 375, height: 583)
+                            
+            },
+                           completion: { (value: Bool) in
+                            self.categoryViewIsOnTheTop = false
+            })
+        } else {
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlUp,
+                           animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
+                            
+            },
+                           completion: { (value: Bool) in
+                            self.categoryViewIsOnTheTop = true
+            })
+        }
     }
+    
     @IBAction func showSortView(_ sender: UIButton) {
     }
+    
     @IBAction func showHotView(_ sender: UIButton) {
     }
+    
+    var categoryViewIsOnTheTop = true
     
     var books = [Book]()
     
@@ -117,10 +142,11 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                 }
             case .success(let moyaResponse):
                 let json = self.parseJSON(moyaResponse.data)
-                self.spinner.stopAnimating()
                 DispatchQueue.main.async {
                     self.book = Book(json: json)
-                    self.books += json["books"].arrayValue.map { Book(json: $0) }
+                    self.books = json["books"].arrayValue.map { Book(json: $0) }
+                    self.categoryButton.setTitle(tag, for: .normal)
+                    self.categoryButton.setTitleColor(UIColor.blue, for: .normal)
                     self.tagBookTableView.reloadData()
                 }
             }
@@ -140,7 +166,6 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         tagBookTableView.reloadData()
         refreshControl.endRefreshing()
     }
-
 }
 
 extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {

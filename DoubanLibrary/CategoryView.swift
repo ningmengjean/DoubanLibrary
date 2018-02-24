@@ -58,6 +58,24 @@ class CategoryView: UIView {
         detailListTableView.estimatedRowHeight = 100.0
         translucentView.isHidden = true
         detailListTableView.isHidden = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapTranslucentView(_:)))
+        self.translucentView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tapTranslucentView(_ sender: UITapGestureRecognizer) {
+            UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       
+            options: UIViewAnimationOptions.curveEaseOut,
+            animations: { self.translucentView.frame = CGRect(x:375, y:0, width: 375, height: 600)
+                self.detailListTableView.frame = CGRect(x:375, y:0, width: 235, height: 600)
+            },
+            completion: { (value: Bool) in
+                self.translucentView.frame = CGRect(x:0, y:0, width: 375, height: 600)
+                self.detailListTableView.frame = CGRect(x:140, y:0, width: 235, height: 600)
+                self.translucentView.isHidden = true
+                self.detailListTableView.isHidden = true
+            })
     }
     
     var categoryArray = ["原创写作","中文电子书","英文电子书"]
@@ -340,14 +358,17 @@ extension CategoryView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == categoryTableView {
             categoryIndex = CategoryView.DetailCategoryIndex(rawValue: Int(indexPath.row))!
-            
         } else if tableView == detailCategoryTableView {
-            categoryIndex = CategoryView.DetailCategoryIndex(rawValue: Int(indexPath.row)) ?? .中文电子书
-            originListIndex = CategoryView.OriginListIndex(rawValue:Int(indexPath.row)) ?? .小说
-            chineseEbookIndex = CategoryView.ChineseEbookIndex(rawValue:Int(indexPath.row)) ?? .人文社科
-            englishEbookIndex = CategoryView.EnglishEbookIndex(rawValue: Int(indexPath.row)) ?? .传记
             translucentView.isHidden = false
             detailListTableView.isHidden = false
+            if categoryIndex == .原创写作 {
+                originListIndex = CategoryView.OriginListIndex(rawValue: Int(indexPath.row))!
+            } else if categoryIndex == .中文电子书 {
+                chineseEbookIndex = CategoryView.ChineseEbookIndex(rawValue: Int(indexPath.row))!
+            } else {
+                englishEbookIndex = CategoryView.EnglishEbookIndex(rawValue: Int(indexPath.row))!
+            }
+       
         } else if tableView == detailListTableView {
             let cell = tableView.cellForRow(at: indexPath)
             guard let text = cell?.textLabel?.text else {return}
