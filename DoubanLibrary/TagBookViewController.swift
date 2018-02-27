@@ -46,19 +46,13 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var categoryArrowView: UIView!
-    
     @IBOutlet weak var categoryArrowImageView: UIImageView! {
         didSet {
             categoryArrowImageView.image = #imageLiteral(resourceName: "arrow")
         }
     }
     
-    @IBOutlet weak var sortArrowView: UIView!
-    
     @IBOutlet weak var sortArrowImageView: UIImageView!
-    
-    @IBOutlet weak var hotArrowView: UIView!
     
     @IBOutlet weak var hotArrowImageView: UIImageView!
     
@@ -74,26 +68,16 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlDown,
                            animations: { self.categoryView.frame = CGRect(x: 0, y: 104, width: 375, height: 583)
-                            
-                            
-            },
-                           completion: { (value: Bool) in
-                            self.categoryViewIsOnTheTop = false
-            })
-            UIView.animate(withDuration: 0.3, animations: {
-                self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                           self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                           self.categoryViewIsOnTheTop = false
             })
         } else {
             UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlUp,
                            animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
-            },
-                           completion: { (value: Bool) in
+                            self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
                             self.categoryViewIsOnTheTop = true
-            })
-            UIView.animate(withDuration: 0.3, animations: {
-                self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
             })
         }
     }
@@ -187,6 +171,13 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         getTagBookLibrary(text!, start: start)
         tagBookTableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func changeDerectionOfTheArrow() {
+            UIView.animate(withDuration: 0.3,
+                           animations: {
+                            self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+            })
     }
 }
 
