@@ -28,8 +28,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         loadMoreView.delegate = self
         tagBookTableView.addPullLoadableView(loadMoreView, type: .loadMore)
         self.tagBookTableView.addSubview(self.refreshControl)
-        categoryButton.setTitle(text!, for: .normal)
-        categoryButton.setTitleColor(UIColor.blue, for: .normal)
+        categoryText.text = text
+        categoryText.textColor = UIColor.blue
         categoryView = CategoryView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
         categoryView.delegate = self
@@ -43,6 +43,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     }()
     
     @IBOutlet weak var categoryButton: UIButton!
+    
+    @IBOutlet weak var categoryText: UILabel!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -151,8 +153,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                 DispatchQueue.main.async {
                     self.book = Book(json: json)
                     self.books = json["books"].arrayValue.map { Book(json: $0) }
-                    self.categoryButton.setTitle(tag, for: .normal)
-                    self.categoryButton.setTitleColor(UIColor.blue, for: .normal)
+                    self.categoryText.text = tag
+                    self.categoryText.textColor = UIColor.blue
                     self.tagBookTableView.reloadData()
                 }
             }
