@@ -10,7 +10,7 @@ import UIKit
 
 protocol CategoryViewDelegate: class {
     func getTagBookLibraryFromDetailList(_ tag: String, start: Int)
-    func changeDerectionOfTheArrow()
+    func hideCategoryView()
 }
 
 class CategoryView: UIView {
@@ -372,12 +372,9 @@ extension CategoryView: UITableViewDelegate,UITableViewDataSource {
        
         } else if tableView == detailListTableView {
             let cell = tableView.cellForRow(at: indexPath)
-            guard let text = cell?.textLabel?.text else {return}
+            let text = String(describing: cell?.textLabel?.text?.split(separator: "\n").first)
             delegate?.getTagBookLibraryFromDetailList(text, start: 0)
-            delegate?.changeDerectionOfTheArrow()
-            CategoryView.animate(withDuration: 0.1, delay: 0, animations: {
-                self.isHidden = true
-            })
+            delegate?.hideCategoryView()
         }
     }
 }

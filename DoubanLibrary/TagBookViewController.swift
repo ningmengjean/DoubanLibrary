@@ -28,7 +28,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         loadMoreView.delegate = self
         tagBookTableView.addPullLoadableView(loadMoreView, type: .loadMore)
         self.tagBookTableView.addSubview(self.refreshControl)
-        categoryText.text = text
+        categoryText.text! = text
         categoryText.textColor = UIColor.blue
         categoryView = CategoryView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
@@ -90,17 +90,14 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     @IBAction func showHotView(_ sender: UIButton) {
     }
     
-    var categoryViewIsOnTheTop = true
+    var categoryViewIsOnTheTop = true 
     
     var books = [Book]()
     
     var book: Book?
     
-    var text: String? {
+    var text: String = "" {
         didSet {
-            guard let text = text else {
-                return
-            }
             getTagBookLibrary(text, start: start)
         }
     }
@@ -153,7 +150,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                 DispatchQueue.main.async {
                     self.book = Book(json: json)
                     self.books = json["books"].arrayValue.map { Book(json: $0) }
-                    self.categoryText.text = tag
+                    self.categoryText.text! = tag
                     self.categoryText.textColor = UIColor.blue
                     self.tagBookTableView.reloadData()
                 }
@@ -163,23 +160,26 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     func getMore() {
         start += 20
-        getTagBookLibrary(text!, start: start)
+        getTagBookLibrary(text, start: start)
     }
 
     @objc
     func refresh() {
         start = 0
         books = [Book]()
-        getTagBookLibrary(text!, start: start)
+        getTagBookLibrary(text, start: start)
         tagBookTableView.reloadData()
         refreshControl.endRefreshing()
     }
     
-    func changeDerectionOfTheArrow() {
-            UIView.animate(withDuration: 0.3,
-                           animations: {
-                            self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
-            })
+    func hideCategoryView() {
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: UIViewAnimationOptions.transitionCurlUp,
+                       animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
+                        self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+                        self.categoryViewIsOnTheTop = true
+        })
     }
 }
 
@@ -229,5 +229,12 @@ extension TagBookViewController: KRPullLoadViewDelegate {
             self.tagBookTableView.reloadData()
             //            }
         }
+    }
+}
+
+fileprivate extension String {
+    fileprivate func urlEncode() -> String {
+        guard let encode = self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return "" }
+        return encode
     }
 }
