@@ -65,11 +65,10 @@ class CategoryView: UIView {
     
     @objc func tapTranslucentView(_ sender: UITapGestureRecognizer) {
             UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       
-            options: UIViewAnimationOptions.curveEaseOut,
-            animations: { self.translucentView.frame = CGRect(x:375, y:0, width: 375, height: 600)
-                self.detailListTableView.frame = CGRect(x:375, y:0, width: 235, height: 600)
+                           delay: 0,
+                           options: UIViewAnimationOptions.curveEaseOut,
+                           animations: { self.translucentView.frame = CGRect(x:375, y:0, width: 375, height: 600)
+                            self.detailListTableView.frame = CGRect(x:375, y:0, width: 235, height: 600)
             },
             completion: { (value: Bool) in
                 self.translucentView.frame = CGRect(x:0, y:0, width: 375, height: 600)
@@ -372,8 +371,8 @@ extension CategoryView: UITableViewDelegate,UITableViewDataSource {
        
         } else if tableView == detailListTableView {
             let cell = tableView.cellForRow(at: indexPath)
-            let text = String(describing: cell?.textLabel?.text?.split(separator: "\n").first)
-            delegate?.getTagBookLibraryFromDetailList(text, start: 0)
+            let text = cell?.textLabel?.text
+            delegate?.getTagBookLibraryFromDetailList(text!, start: 0)
             delegate?.hideCategoryView()
         }
     }

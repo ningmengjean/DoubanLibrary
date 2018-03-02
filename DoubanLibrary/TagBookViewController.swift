@@ -19,6 +19,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var categoryView = CategoryView()
     
+    var sortView = SortView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tagBookTableView.register(UINib(nibName: "TagBookTableViewCell", bundle: nil), forCellReuseIdentifier: "TagBookTableViewCell")
@@ -28,11 +30,14 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         loadMoreView.delegate = self
         tagBookTableView.addPullLoadableView(loadMoreView, type: .loadMore)
         self.tagBookTableView.addSubview(self.refreshControl)
-        categoryText.text! = text
+        categoryText.text! = text!
         categoryText.textColor = UIColor.blue
         categoryView = CategoryView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
+        sortView = SortView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
+        self.view.addSubview(sortView)
         categoryView.delegate = self
+        
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -96,9 +101,9 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var book: Book?
     
-    var text: String = "" {
+    var text: String? {
         didSet {
-            getTagBookLibrary(text, start: start)
+            getTagBookLibrary(text!, start: start)
         }
     }
     
@@ -147,10 +152,11 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                 }
             case .success(let moyaResponse):
                 let json = self.parseJSON(moyaResponse.data)
+                self.spinner.stopAnimating()
                 DispatchQueue.main.async {
                     self.book = Book(json: json)
                     self.books = json["books"].arrayValue.map { Book(json: $0) }
-                    self.categoryText.text! = tag
+                    self.categoryText.text! = tag 
                     self.categoryText.textColor = UIColor.blue
                     self.tagBookTableView.reloadData()
                 }
@@ -160,14 +166,14 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     func getMore() {
         start += 20
-        getTagBookLibrary(text, start: start)
+        getTagBookLibrary(text!, start: start)
     }
 
     @objc
     func refresh() {
         start = 0
         books = [Book]()
-        getTagBookLibrary(text, start: start)
+        getTagBookLibrary(text!, start: start)
         tagBookTableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -179,6 +185,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                        animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
                         self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
                         self.categoryViewIsOnTheTop = true
+                        self.spinner.startAnimating()
         })
     }
 }
