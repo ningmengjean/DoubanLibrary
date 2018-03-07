@@ -15,14 +15,6 @@ protocol CategoryViewDelegate: class {
 
 class CategoryView: UIView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     weak var delegate: CategoryViewDelegate?
     
     var categoryTableView = UITableView()
@@ -33,34 +25,39 @@ class CategoryView: UIView {
     
     var detailListTableView = UITableView()
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        self.addSubview(categoryTableView)
-        self.addSubview(detailCategoryTableView)
-        categoryTableView.frame = CGRect(x: 0, y: 0, width: 125, height: 600)
-        detailCategoryTableView.frame = CGRect(x: 125, y: 0, width: 275, height: 600)
-        categoryTableView.delegate = self
-        categoryTableView.dataSource = self
-        detailCategoryTableView.delegate = self
-        detailCategoryTableView.dataSource = self
-        categoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
-        detailCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCategoryTableViewCell")
-        detailCategoryTableView.rowHeight = UITableViewAutomaticDimension
-        detailCategoryTableView.estimatedRowHeight = 100.0
-        self.insertSubview(translucentView, aboveSubview: categoryTableView)
-        translucentView.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
-        translucentView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        self.insertSubview(detailListTableView, aboveSubview: detailCategoryTableView)
-        detailListTableView.frame = CGRect(x: 140, y: 0, width: 235, height: 600)
-        detailListTableView.delegate = self
-        detailListTableView.dataSource = self
-        detailListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailListTableViewCell")
-        detailListTableView.rowHeight = UITableViewAutomaticDimension
-        detailListTableView.estimatedRowHeight = 100.0
-        translucentView.isHidden = true
-        detailListTableView.isHidden = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapTranslucentView(_:)))
-        self.translucentView.addGestureRecognizer(tapGesture)
+    var isInited = false
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !isInited {
+            categoryTableView.delegate = self
+            categoryTableView.dataSource = self
+            detailCategoryTableView.delegate = self
+            detailCategoryTableView.dataSource = self
+            categoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
+            detailCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCategoryTableViewCell")
+            detailCategoryTableView.rowHeight = UITableViewAutomaticDimension
+            detailCategoryTableView.estimatedRowHeight = 100.0
+            categoryTableView.frame = CGRect(x: 0, y: 0, width: 125, height: 600)
+            detailCategoryTableView.frame = CGRect(x: 125, y: 0, width: 275, height: 600)
+            self.addSubview(categoryTableView)
+            self.addSubview(detailCategoryTableView)
+            self.insertSubview(translucentView, aboveSubview: categoryTableView)
+            translucentView.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
+            translucentView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.insertSubview(detailListTableView, aboveSubview: detailCategoryTableView)
+            detailListTableView.frame = CGRect(x: 140, y: 0, width: 235, height: 600)
+            detailListTableView.delegate = self
+            detailListTableView.dataSource = self
+            detailListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailListTableViewCell")
+            detailListTableView.rowHeight = UITableViewAutomaticDimension
+            detailListTableView.estimatedRowHeight = 100.0
+            translucentView.isHidden = true
+            detailListTableView.isHidden = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapTranslucentView(_:)))
+            self.translucentView.addGestureRecognizer(tapGesture)
+        }
+        
     }
     
     @objc func tapTranslucentView(_ sender: UITapGestureRecognizer) {

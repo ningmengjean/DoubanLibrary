@@ -19,25 +19,67 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var categoryView = CategoryView()
     
-    var sortView = SortView()
+    lazy var sortView: UIView = {
+        let sortView : SortView = (Bundle.main.loadNibNamed("SortView", owner: nil, options: nil)!.first as? SortView)!
+        return sortView
+    }()
+    
+    var categoryToBottomConstraint = NSLayoutConstraint()
+    var categoryToTopConstraint = NSLayoutConstraint()
+    
+    var sortToBottomConstraint = NSLayoutConstraint()
+    var sortToTopConstraint = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonView.frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        self.view.addSubview(buttonView)
+        buttonView.isUserInteractionEnabled = true
         tagBookTableView.register(UINib(nibName: "TagBookTableViewCell", bundle: nil), forCellReuseIdentifier: "TagBookTableViewCell")
         tagBookTableView.rowHeight = UITableViewAutomaticDimension
         tagBookTableView.estimatedRowHeight = 100.0
+        tagBookTableView.tableFooterView = UIView()
         let loadMoreView = KRPullLoadView()
         loadMoreView.delegate = self
         tagBookTableView.addPullLoadableView(loadMoreView, type: .loadMore)
         self.tagBookTableView.addSubview(self.refreshControl)
         categoryText.text! = text!
         categoryText.textColor = UIColor.blue
-        categoryView = CategoryView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
-        sortView = SortView(frame: CGRect(x: 0, y: -583, width: 375, height: 583))
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
-        self.view.addSubview(sortView)
-        categoryView.delegate = self
+        categoryView.backgroundColor = .blue
+        self.view.insertSubview(sortView, aboveSubview: tagBookTableView)
+        sortView.backgroundColor = .white
+        //add constraint for Category view
         
+        categoryView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: categoryView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: categoryView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: categoryView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: UIScreen.main.bounds.height - 64 - 40).isActive = true
+        
+        categoryToBottomConstraint = NSLayoutConstraint(item: categoryView, attribute: .bottom, relatedBy: .equal, toItem: categoryButton, attribute: .top, multiplier: 1, constant: 0)
+        categoryToBottomConstraint.priority = UILayoutPriority.defaultHigh
+        categoryToBottomConstraint.isActive = true
+        
+        categoryToTopConstraint = NSLayoutConstraint(item: categoryView, attribute: .top, relatedBy: .equal, toItem: categoryButton, attribute: .bottom, multiplier: 1, constant: 0)
+        categoryToTopConstraint.priority = UILayoutPriority.defaultLow
+        categoryToTopConstraint.isActive = true
+        
+        //add constraint for Sort view
+        
+        sortView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: sortView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: sortView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: sortView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: UIScreen.main.bounds.height - 64 - 40).isActive = true
+
+        sortToBottomConstraint = NSLayoutConstraint(item: sortView, attribute: .bottom, relatedBy: .equal, toItem: categoryButton, attribute: .top, multiplier: 1, constant: 0)
+        sortToBottomConstraint.priority = UILayoutPriority.defaultHigh
+        sortToBottomConstraint.isActive = true
+
+        sortToTopConstraint = NSLayoutConstraint(item: sortView, attribute: .top, relatedBy: .equal, toItem: categoryButton, attribute: .bottom, multiplier: 1, constant: 0)
+        sortToTopConstraint.priority = UILayoutPriority.defaultLow
+        sortToTopConstraint.isActive = true
+        
+        categoryView.delegate = self
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -46,8 +88,29 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         return refreshControl
     }()
+
+    @IBOutlet weak var buttonView: UIView!
     
-    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var categoryButton: UIButton! {
+        didSet {
+            categoryButton.layer.borderWidth = 0.5
+            categoryButton.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        
+    }
+    @IBOutlet weak var sortButton: UIButton! {
+        didSet {
+            sortButton.layer.borderWidth = 0.5
+            sortButton.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
+    
+    @IBOutlet weak var hotButton: UIButton! {
+        didSet {
+            hotButton.layer.borderWidth = 0.5
+            hotButton.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
     
     @IBOutlet weak var categoryText: UILabel!
     
@@ -59,9 +122,17 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         }
     }
     
-    @IBOutlet weak var sortArrowImageView: UIImageView!
+    @IBOutlet weak var sortArrowImageView: UIImageView! {
+        didSet {
+            sortArrowImageView.image = #imageLiteral(resourceName: "arrow")
+        }
+    }
     
-    @IBOutlet weak var hotArrowImageView: UIImageView!
+    @IBOutlet weak var hotArrowImageView: UIImageView! {
+        didSet {
+            hotArrowImageView.image = #imageLiteral(resourceName: "arrow")
+        }
+    }
     
     @IBOutlet weak var tagBookTableView: UITableView! {
         didSet {
@@ -71,18 +142,26 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     }
     @IBAction func showCategoryView(_ sender: UIButton) {
         if categoryViewIsOnTheTop {
+            view.layoutIfNeeded()
+            categoryToTopConstraint.priority = UILayoutPriority.defaultHigh
+            categoryToBottomConstraint.priority = UILayoutPriority.defaultLow
             UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlDown,
-                           animations: { self.categoryView.frame = CGRect(x: 0, y: 104, width: 375, height: 583)
+                           animations: {
+                           self.view.layoutIfNeeded()
                            self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                            self.categoryViewIsOnTheTop = false
             })
         } else {
+            view.layoutIfNeeded()
+            categoryToTopConstraint.priority = UILayoutPriority.defaultLow
+            categoryToBottomConstraint.priority = UILayoutPriority.defaultHigh
             UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlUp,
-                           animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
+                           animations: {
+                            self.view.layoutIfNeeded()
                             self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
                             self.categoryViewIsOnTheTop = true
             })
@@ -90,12 +169,40 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     }
     
     @IBAction func showSortView(_ sender: UIButton) {
+        if sortViewIsOnTheTop {
+            view.layoutIfNeeded()
+            sortToTopConstraint.priority = UILayoutPriority.defaultHigh
+            sortToBottomConstraint.priority = UILayoutPriority.defaultLow
+            sortView.backgroundColor = .white
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlDown,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.sortArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                            self.sortViewIsOnTheTop = false
+            })
+        } else {
+            view.layoutIfNeeded()
+            sortToTopConstraint.priority = UILayoutPriority.defaultLow
+            sortToBottomConstraint.priority = UILayoutPriority.defaultHigh
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlUp,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.sortArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+                            self.sortViewIsOnTheTop = true
+            })
+        }
     }
     
     @IBAction func showHotView(_ sender: UIButton) {
     }
     
-    var categoryViewIsOnTheTop = true 
+    var categoryViewIsOnTheTop = true
+    
+    var sortViewIsOnTheTop = true
     
     var books = [Book]()
     
@@ -179,10 +286,13 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     }
     
     func hideCategoryView() {
+        categoryToTopConstraint.priority = UILayoutPriority.defaultLow
+        categoryToBottomConstraint.priority = UILayoutPriority.defaultHigh
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        options: UIViewAnimationOptions.transitionCurlUp,
-                       animations: { self.categoryView.frame = CGRect(x: 0, y: -583, width: 375, height: 583)
+                       animations: {
+                        self.view.layoutIfNeeded()
                         self.categoryArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
                         self.categoryViewIsOnTheTop = true
                         self.spinner.startAnimating()

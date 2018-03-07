@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		721C467A2046DA1D005BE86C /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721C46792046DA1D005BE86C /* SortView.swift */; };
 		721C467C2048E9D7005BE86C /* SortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 721C467B2048E9D7005BE86C /* SortView.xib */; };
+		721C467E204CD753005BE86C /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721C467D204CD753005BE86C /* BorderedButton.swift */; };
 		72375B412029E127001F657A /* KRPullLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72375B402029E127001F657A /* KRPullLoader.framework */; };
 		7265BC97202DE40700784E2E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265BC96202DE40700784E2E /* CategoryView.swift */; };
 		7265BC99202E004700784E2E /* CategoryArrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265BC98202E004700784E2E /* CategoryArrays.swift */; };
@@ -33,6 +34,7 @@
 		251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubanLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		721C46792046DA1D005BE86C /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		721C467B2048E9D7005BE86C /* SortView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortView.xib; sourceTree = "<group>"; };
+		721C467D204CD753005BE86C /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		72375B402029E127001F657A /* KRPullLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRPullLoader.framework; path = Carthage/Build/iOS/KRPullLoader.framework; sourceTree = "<group>"; };
 		7265BC96202DE40700784E2E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		7265BC98202E004700784E2E /* CategoryArrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryArrays.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				7265BC96202DE40700784E2E /* CategoryView.swift */,
 				721C46792046DA1D005BE86C /* SortView.swift */,
 				721C467B2048E9D7005BE86C /* SortView.xib */,
+				721C467D204CD753005BE86C /* BorderedButton.swift */,
 				7265BC98202E004700784E2E /* CategoryArrays.swift */,
 				729653C02021AAA2008CD05B /* NetworkService.swift */,
 				7296538C201F0486008CD05B /* AppDelegate.swift */,
@@ -322,6 +325,7 @@
 				729653BF20219E4C008CD05B /* TagBookTableViewCell.swift in Sources */,
 				721C467A2046DA1D005BE86C /* SortView.swift in Sources */,
 				729653AB20209E50008CD05B /* TagBookModel.swift in Sources */,
+				721C467E204CD753005BE86C /* BorderedButton.swift in Sources */,
 				729653A3201F0B7A008CD05B /* LibraryBookTagViewController.swift in Sources */,
 				7265BC97202DE40700784E2E /* CategoryView.swift in Sources */,
 				7265BC99202E004700784E2E /* CategoryArrays.swift in Sources */,
