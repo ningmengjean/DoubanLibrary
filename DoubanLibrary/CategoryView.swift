@@ -38,15 +38,15 @@ class CategoryView: UIView {
             detailCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailCategoryTableViewCell")
             detailCategoryTableView.rowHeight = UITableViewAutomaticDimension
             detailCategoryTableView.estimatedRowHeight = 100.0
-            categoryTableView.frame = CGRect(x: 0, y: 0, width: 125, height: 600)
-            detailCategoryTableView.frame = CGRect(x: 125, y: 0, width: 275, height: 600)
+            categoryTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width/3, height: self.bounds.height)
+            detailCategoryTableView.frame = CGRect(x: self.bounds.width/3, y: 0, width: self.bounds.width/3*2, height: self.bounds.height)
             self.addSubview(categoryTableView)
             self.addSubview(detailCategoryTableView)
             self.insertSubview(translucentView, aboveSubview: categoryTableView)
-            translucentView.frame = CGRect(x: 0, y: 0, width: 375, height: 600)
+            translucentView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
             translucentView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             self.insertSubview(detailListTableView, aboveSubview: detailCategoryTableView)
-            detailListTableView.frame = CGRect(x: 140, y: 0, width: 235, height: 600)
+            detailListTableView.frame = CGRect(x: self.bounds.width/3+15, y: 0, width: self.bounds.width/3*2-15 , height: self.bounds.height)
             detailListTableView.delegate = self
             detailListTableView.dataSource = self
             detailListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "DetailListTableViewCell")
