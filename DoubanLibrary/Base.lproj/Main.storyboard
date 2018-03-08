@@ -133,7 +133,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="showHotView:" destination="Fnp-Nm-79W" eventType="touchUpInside" id="wLG-zf-0ZL"/>
+                                            <action selector="showHotGategoryView:" destination="Fnp-Nm-79W" eventType="touchUpInside" id="6Kw-Nt-JWI"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="liY-Cz-v7F">

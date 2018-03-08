@@ -30,6 +30,11 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     var sortToBottomConstraint = NSLayoutConstraint()
     var sortToTopConstraint = NSLayoutConstraint()
     
+    var hotToBottomConstraint = NSLayoutConstraint()
+    var hotToTopConstraint = NSLayoutConstraint()
+    
+    var hotCategoryView = HotGategoryView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonView.frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -46,8 +51,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         categoryText.text! = text!
         categoryText.textColor = UIColor.blue
         self.view.insertSubview(categoryView, aboveSubview: tagBookTableView)
-        categoryView.backgroundColor = .blue
         self.view.insertSubview(sortView, aboveSubview: tagBookTableView)
+        self.view.insertSubview(hotCategoryView, aboveSubview: tagBookTableView)
         sortView.backgroundColor = .white
         //add constraint for Category view
         
@@ -79,7 +84,24 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         sortToTopConstraint.priority = UILayoutPriority.defaultLow
         sortToTopConstraint.isActive = true
         
+        //add constraint for HotGategory view
+        
+        hotCategoryView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: hotCategoryView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: hotCategoryView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: hotCategoryView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: UIScreen.main.bounds.height - 64 - 40).isActive = true
+        
+        hotToBottomConstraint = NSLayoutConstraint(item: hotCategoryView, attribute: .bottom, relatedBy: .equal, toItem: categoryButton, attribute: .top, multiplier: 1, constant: 0)
+        hotToBottomConstraint.priority = UILayoutPriority.defaultHigh
+        hotToBottomConstraint.isActive = true
+        
+        hotToTopConstraint = NSLayoutConstraint(item: hotCategoryView, attribute: .top, relatedBy: .equal, toItem: categoryButton, attribute: .bottom, multiplier: 1, constant: 0)
+        hotToTopConstraint.priority = UILayoutPriority.defaultLow
+        hotToTopConstraint.isActive = true
+        
         categoryView.delegate = self
+ 
+        
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -197,12 +219,40 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         }
     }
     
-    @IBAction func showHotView(_ sender: UIButton) {
+    @IBAction func showHotGategoryView(_ sender: UIButton) {
+        if hotGategoryViewIsOnTheTop {
+            view.layoutIfNeeded()
+            hotToTopConstraint.priority = UILayoutPriority.defaultHigh
+            hotToBottomConstraint.priority = UILayoutPriority.defaultLow
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlDown,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                            self.hotGategoryViewIsOnTheTop = false
+            })
+        } else {
+            view.layoutIfNeeded()
+            hotToTopConstraint.priority = UILayoutPriority.defaultLow
+            hotToBottomConstraint.priority = UILayoutPriority.defaultHigh
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlUp,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+                            self.hotGategoryViewIsOnTheTop = true
+            })
+        }
     }
+    
     
     var categoryViewIsOnTheTop = true
     
     var sortViewIsOnTheTop = true
+
+    var hotGategoryViewIsOnTheTop = true
     
     var books = [Book]()
     

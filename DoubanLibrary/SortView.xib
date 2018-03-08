@@ -25,7 +25,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title=" 限时特价"/>
                     <connections>
-                        <action selector="choosePromotionButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="nJc-to-A0E"/>
+                        <action selector="choosePromotionButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="GD7-dw-iRO"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c09-zu-VrX">
@@ -44,7 +44,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="电子书"/>
                     <connections>
-                        <action selector="chooseEbookButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="Uj6-Wp-Vxu"/>
+                        <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="2ai-j5-Qod"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp2-ol-4LT" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
@@ -56,8 +56,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="短篇"/>
                     <connections>
-                        <action selector="chooseEbookButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="BZw-uw-OQk"/>
-                        <action selector="chooseShortStoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="qPU-BE-rQ0"/>
+                        <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="ifv-QN-Yhr"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NqC-36-jNM">
@@ -76,7 +75,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="专栏连载"/>
                     <connections>
-                        <action selector="chooseColumnButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="0VX-rI-2Gz"/>
+                        <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="VY1-rZ-glA"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ob5-vz-FT0">
@@ -95,7 +94,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="重置"/>
                     <connections>
-                        <action selector="chooseResetButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="OCr-oD-I3O"/>
+                        <action selector="resetStatusLabel:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="YI1-Tp-4wl"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiG-nr-kJ7">
@@ -107,7 +106,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="确定"/>
                     <connections>
-                        <action selector="chooseConfirmButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="YOg-Tn-8q2"/>
+                        <action selector="confirmStatusLabel:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="WJB-kP-cXJ"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格区间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ou5-zU-aND">
@@ -129,7 +128,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="免费"/>
                     <connections>
-                        <action selector="chooseFreeButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="MmX-gY-htm"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="tbT-Oo-44T"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vBQ-W9-xht">
@@ -148,7 +147,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="2 - 4.99"/>
                     <connections>
-                        <action selector="chooseThirdButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="agu-tG-oeO"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="jNk-3x-ttZ"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8t2-fc-7qT">
@@ -167,7 +166,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="10 - 19.99"/>
                     <connections>
-                        <action selector="chooseFifthButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="WOp-S5-09l"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="mHS-Ji-iX2"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="opm-TX-LVH">
@@ -186,7 +185,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title=" 0.01 - 1.99"/>
                     <connections>
-                        <action selector="chooseSecondButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="1Ez-Pn-mcs"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="eib-Kf-x8N"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-nO-I1f">
@@ -205,7 +204,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="5 - 9.99"/>
                     <connections>
-                        <action selector="chooseForthButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="dYi-W2-nG5"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="IM7-bC-ark"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FEh-gz-SZE">
@@ -224,7 +223,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <state key="normal" title="20 及以上"/>
                     <connections>
-                        <action selector="chooseSixthButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="J3o-Vj-MYy"/>
+                        <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="Sc0-NM-sic"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YLy-ZM-NTF">
