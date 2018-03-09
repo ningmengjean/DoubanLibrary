@@ -9,38 +9,96 @@
 import UIKit
 import Foundation
 
-enum Promotion: String {
-    case promote = "限时免费"
-    case none
-}
-
-enum PriceRange: String {
-    case free = "免费"
-    case secondRange = "0.01 - 1.99"
-    case thirdRange = "2 - 4.99"
-    case forthRange = "5 - 9.99"
-    case fifthRange = "10 - 19.99"
-    case sixthRange = "20 及以上"
-    case none
-}
-
-enum Category: String {
-    case ebook = "电子书"
-    case column = "专栏连载"
-    case shortStory = "短篇"
-    case none
-}
-
 class SortView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
     }
+    enum PromotionType: String {
+        case promotion = "限时特价"
+        case none
+    }
     
-    var isSelected = true
+    enum PriceRange: String {
+        case none
+        case free = "免费"
+        case one = "0.01 - 1.99"
+        case two = "2 - 4.99"
+        case five = "5 - 9.99"
+        case ten = "10 - 19.99"
+        case twenty = "20 及以上"
+    }
     
-    @IBOutlet weak var promotionButton: BorderedButton!
+    enum Category: String {
+        case none
+        case dianzi = "电子书"
+        case zhuanlan = "专栏连载"
+        case duanpian = "短篇"
+    }
+    
+    var type: PromotionType = .none {
+        didSet{
+            if oldValue == type {
+                type = .none
+                promtionImageView.image = nil
+                printResultString()
+            } else {
+                printResultString()
+            }
+        }
+    }
+    
+    var range: PriceRange = .none {
+        didSet{
+            if oldValue == range {
+                
+                range = .none
+                printResultString()
+            } else {
+                printResultString()
+            }
+        }
+    }
+    
+    var category: Category = .none {
+        didSet{
+            if oldValue == category {
+                category = .none
+                printResultString()
+            } else {
+                printResultString()
+            }
+        }
+    }
+    
+    func printResultString() {
+        var strArr = [String]()
+        
+        if type != .none {
+            strArr.append(type.rawValue)
+        }
+        
+        if range != .none {
+            strArr.append(range.rawValue)
+        }
+        if category != .none {
+            strArr.append(category.rawValue)
+        }
+        statusLable.text = strArr.joined(separator: " + ")
+        if statusLable.text == "" {
+            statusLable.backgroundColor = .white
+        } else {
+            statusLable.textColor = .white
+            statusLable.backgroundColor = .darkGray
+        }
+    }
+    
+    @IBOutlet weak var promotionButton: BorderedButton! {
+        didSet {
+            promotionButton.isUserInteractionEnabled = true
+        }
+    }
     @IBOutlet weak var promtionImageView: UIImageView!
     @IBOutlet weak var freeButton: BorderedButton!
     @IBOutlet weak var freeImageView: UIImageView!
@@ -66,60 +124,47 @@ class SortView: UIView {
     
 
     @IBAction func choosePromotionButton(_ sender: BorderedButton) {
-        if isSelected {
-            
-        }
+        type = .promotion
+        promtionImageView?.image = #imageLiteral(resourceName: "choose")
+        
     }
     @IBAction func choosePriceButton(_ sender: BorderedButton) {
+        if sender == freeButton {
+            range = .free
+            freeImageView?.image = #imageLiteral(resourceName: "choose")
+        } else if sender == secondButton {
+            range = .one
+            secondImageView?.image = #imageLiteral(resourceName: "choose")
+        } else if sender == thirdButton {
+            range = .two
+            thirdImageView?.image = #imageLiteral(resourceName: "choose")
+        } else if sender == forthButton {
+            range = .five
+            forthImageView?.image = #imageLiteral(resourceName: "choose")
+        } else if sender == fifthButton {
+            range = .ten
+            fifthImageView?.image = #imageLiteral(resourceName: "choose")
+        } else if sender == sixthButton {
+            range = .twenty
+            sixthImageView?.image = #imageLiteral(resourceName: "choose")
+        }
     }
     
     @IBAction func chooseCategoryButton(_ sender: BorderedButton) {
+        if sender == ebookButton {
+            category = .dianzi
+        } else if sender == shortStoryButton {
+            category = .duanpian
+        } else if sender == columnButton {
+            category = .zhuanlan
+        }
     }
     @IBAction func resetStatusLabel(_ sender: UIButton) {
     }
     @IBAction func confirmStatusLabel(_ sender: UIButton) {
     }
     
-    func showTextOnTheStatusLabel(_ button: BorderedButton) -> NSAttributedString? {
-        let text = NSMutableAttributedString()
-        
-        return text
-    }
     
-//    func showTextOnStatusLabel(_ buttonFromPromotion: Promotion?, buttonFromPrice: PriceRange?, buttonFromCategory: Category?) -> NSAttributedString {
-//        let text = NSMutableAttributedString()
-//        let textAttribute = [ NSAttributedStringKey.foregroundColor: UIColor.blue ]
-//        let addAttribute = [ NSAttributedStringKey.foregroundColor: UIColor.white ]
-//        let promotionText = NSAttributedString(string: (buttonFromPrice?.rawValue)!, attributes: textAttribute)
-//        let priceText = NSAttributedString(string: (buttonFromPrice?.rawValue)!, attributes: textAttribute)
-//        let categoryText = NSAttributedString(string: (buttonFromPrice?.rawValue)!, attributes: textAttribute)
-//        let addText = NSAttributedString(string: " + ", attributes: addAttribute)
-//        if !(buttonFromPromotion?.rawValue.isEmpty)! {
-//            if !(buttonFromPrice?.rawValue.isEmpty)! {
-//                if !(buttonFromCategory?.rawValue.isEmpty)! {
-//                    text.append(promotionText)
-//                    text.append(addText)
-//                    text.append(priceText)
-//                    text.append(addText)
-//                    text.append(categoryText)
-//                } else {
-//                    text.append(promotionText)
-//                    text.append(addText)
-//                    text.append(priceText)
-//                }
-//            } else {
-//                if !(buttonFromCategory?.rawValue.isEmpty)! {
-//                    text.append(promotionText)
-//                    text.append(addText)
-//                    text.append(categoryText)
-//                } else {
-//                    text.append(promotionText)
-//                }
-//            }
-//        }
-//        return text
-//    }
-
   
  
 }

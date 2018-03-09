@@ -17,7 +17,8 @@ class BorderedButton: UIButton {
         layer.cornerRadius = layer.frame.height / 2
         clipsToBounds = true
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 30)
-//        setTitleColor(tintColor, for: .normal)
-//        setTitleColor(UIColor.darkGray, for: .highlighted)
+        self.isUserInteractionEnabled = true
+        setTitleColor(tintColor, for: .normal)
+        setTitleColor(.black, for: .highlighted)
     }
 }

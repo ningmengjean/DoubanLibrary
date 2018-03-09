@@ -100,8 +100,41 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         hotToTopConstraint.isActive = true
         
         categoryView.delegate = self
- 
         
+        hotCategoryView.searchHotCategoryHandler = { (tag, start) in
+            self.provider.request(.searchHotCategoryHandler(tag: tag, start: start)) { (result) in
+                switch result {
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.showNetworkError()
+                    }
+                case .success(let moyaResponse):
+                    let json = self.parseJSON(moyaResponse.data)
+                    self.spinner.stopAnimating()
+                    DispatchQueue.main.async {
+                        self.book = Book(json: json)
+                        self.books = json["books"].arrayValue.map { Book(json: $0) }
+                        self.hotButton.setTitle(tag, for: .normal)
+                        self.hotButton.setTitleColor(.blue, for: .normal)
+                        self.tagBookTableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        hotCategoryView.hideHotCategoryView = {
+            self.hotToTopConstraint.priority = UILayoutPriority.defaultLow
+            self.hotToBottomConstraint.priority = UILayoutPriority.defaultHigh
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlUp,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+                            self.hotCategoryViewIsOnTheTop = true
+                            self.spinner.startAnimating()
+            })
+        }
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -118,12 +151,12 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             categoryButton.layer.borderWidth = 0.5
             categoryButton.layer.borderColor = UIColor.lightGray.cgColor
         }
-        
     }
     @IBOutlet weak var sortButton: UIButton! {
         didSet {
             sortButton.layer.borderWidth = 0.5
             sortButton.layer.borderColor = UIColor.lightGray.cgColor
+            sortButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: -30)
         }
     }
     
@@ -131,6 +164,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         didSet {
             hotButton.layer.borderWidth = 0.5
             hotButton.layer.borderColor = UIColor.lightGray.cgColor
+            hotButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: -30)
         }
     }
     
@@ -220,7 +254,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     }
     
     @IBAction func showHotGategoryView(_ sender: UIButton) {
-        if hotGategoryViewIsOnTheTop {
+        if hotCategoryViewIsOnTheTop {
             view.layoutIfNeeded()
             hotToTopConstraint.priority = UILayoutPriority.defaultHigh
             hotToBottomConstraint.priority = UILayoutPriority.defaultLow
@@ -230,7 +264,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                            animations: {
                             self.view.layoutIfNeeded()
                             self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-                            self.hotGategoryViewIsOnTheTop = false
+                            self.hotCategoryViewIsOnTheTop = false
             })
         } else {
             view.layoutIfNeeded()
@@ -242,7 +276,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                            animations: {
                             self.view.layoutIfNeeded()
                             self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
-                            self.hotGategoryViewIsOnTheTop = true
+                            self.hotCategoryViewIsOnTheTop = true
             })
         }
     }
@@ -252,7 +286,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var sortViewIsOnTheTop = true
 
-    var hotGategoryViewIsOnTheTop = true
+    var hotCategoryViewIsOnTheTop = true
     
     var books = [Book]()
     
