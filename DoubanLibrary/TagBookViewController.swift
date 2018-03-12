@@ -19,7 +19,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var categoryView = CategoryView()
     
-    lazy var sortView: UIView = {
+    lazy var sortView: SortView = {
         let sortView : SortView = (Bundle.main.loadNibNamed("SortView", owner: nil, options: nil)!.first as? SortView)!
         return sortView
     }()
@@ -135,7 +135,45 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                             self.spinner.startAnimating()
             })
         }
+        
+        sortView.searchSortHandler = { (tag, start) in
+            self.provider.request(.searchSortHandler(tag: tag, start: start)) { (result) in
+                switch result {
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.showNetworkError()
+                    }
+                case .success(let moyaResponse):
+                    let json = self.parseJSON(moyaResponse.data)
+                    self.spinner.stopAnimating()
+                    DispatchQueue.main.async {
+                        self.book = Book(json: json)
+                        self.books = json["books"].arrayValue.map { Book(json: $0) }
+                        self.sortButton.setTitle("(筛选\(self.sortView.sortCount))", for: .normal)
+                        self.sortButton.setTitleColor(.blue, for: .normal)
+                        self.tagBookTableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        sortView.hideSortView = {
+            self.sortToTopConstraint.priority = UILayoutPriority.defaultLow
+            self.sortToBottomConstraint.priority = UILayoutPriority.defaultHigh
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: UIViewAnimationOptions.transitionCurlUp,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.sortArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi*2.0))
+                            self.sortViewIsOnTheTop = true
+                            self.spinner.startAnimating()
+            })
+        }
     }
+    
+    
+    
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()

@@ -16,14 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je3-Dd-s7x" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je3-Dd-s7x" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="40" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="3kz-9b-0Ol"/>
                         <constraint firstAttribute="width" constant="140" id="j8d-Qd-xtg"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title=" 限时特价"/>
+                    <state key="normal" title=" 限时特价">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePromotionButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="GD7-dw-iRO"/>
                     </connections>
@@ -35,26 +36,28 @@
                         <constraint firstAttribute="width" constant="20" id="bpo-58-GRy"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-3P-Nvp" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-3P-Nvp" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="370" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Ik3-6r-fCI"/>
                         <constraint firstAttribute="width" constant="140" id="gjL-tI-ZHk"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="电子书"/>
+                    <state key="normal" title="电子书">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="2ai-j5-Qod"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp2-ol-4LT" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp2-ol-4LT" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="420" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="2gq-Xx-vi7"/>
                         <constraint firstAttribute="width" constant="140" id="JQr-cQ-GdU"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="短篇"/>
+                    <state key="normal" title="短篇">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="ifv-QN-Yhr"/>
                     </connections>
@@ -66,14 +69,15 @@
                         <constraint firstAttribute="width" constant="20" id="ucM-pq-3bp"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbf-Fy-Bbl" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbf-Fy-Bbl" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="215" y="370" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="aqk-WN-4m1"/>
                         <constraint firstAttribute="width" constant="140" id="gnN-em-Bb7"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="专栏连载"/>
+                    <state key="normal" title="专栏连载">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="chooseCategoryButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="VY1-rZ-glA"/>
                     </connections>
@@ -119,14 +123,15 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irM-Ie-wcx" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irM-Ie-wcx" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="155" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="4Eu-g3-ER9"/>
                         <constraint firstAttribute="width" constant="140" id="Xvq-wY-25V"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="免费"/>
+                    <state key="normal" title="免费">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="tbT-Oo-44T"/>
                     </connections>
@@ -138,14 +143,15 @@
                         <constraint firstAttribute="width" constant="20" id="sDZ-zj-q8D"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHQ-PM-Khq" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHQ-PM-Khq" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="205" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Ypy-Bq-nhQ"/>
                         <constraint firstAttribute="width" constant="140" id="cQx-R2-c1S"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="2 - 4.99"/>
+                    <state key="normal" title="2 - 4.99">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="jNk-3x-ttZ"/>
                     </connections>
@@ -157,14 +163,15 @@
                         <constraint firstAttribute="width" constant="20" id="ecn-N2-2lY"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-t6-Zb0" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-t6-Zb0" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="20" y="255" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="140" id="Mv8-gb-CSu"/>
                         <constraint firstAttribute="height" constant="35" id="XtZ-65-fNL"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="10 - 19.99"/>
+                    <state key="normal" title="10 - 19.99">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="mHS-Ji-iX2"/>
                     </connections>
@@ -176,14 +183,15 @@
                         <constraint firstAttribute="height" constant="20" id="Npz-3K-0Mh"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDw-pf-5qk" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDw-pf-5qk" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="215" y="155" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="h0c-sV-Go0"/>
                         <constraint firstAttribute="width" constant="140" id="txb-HH-9Cu"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title=" 0.01 - 1.99"/>
+                    <state key="normal" title=" 0.01 - 1.99">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="eib-Kf-x8N"/>
                     </connections>
@@ -195,14 +203,15 @@
                         <constraint firstAttribute="height" constant="20" id="uk5-af-BF7"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRc-xu-eUf" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRc-xu-eUf" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="215" y="205" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="eXq-Ta-xlP"/>
                         <constraint firstAttribute="width" constant="140" id="uAD-yq-EwA"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="5 - 9.99"/>
+                    <state key="normal" title="5 - 9.99">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="IM7-bC-ark"/>
                     </connections>
@@ -214,14 +223,15 @@
                         <constraint firstAttribute="width" constant="20" id="Vd8-vN-Cwa"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWX-pm-4bn" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWX-pm-4bn" customClass="BorderedButton" customModule="DoubanLibrary" customModuleProvider="target">
                     <rect key="frame" x="215" y="255" width="140" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="1j1-Ab-xRY"/>
                         <constraint firstAttribute="width" constant="140" id="DnO-BF-XDI"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="20 及以上"/>
+                    <state key="normal" title="20 及以上">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="choosePriceButton:" destination="a0N-WQ-kwh" eventType="touchUpInside" id="Sc0-NM-sic"/>
                     </connections>

@@ -7,18 +7,39 @@
 //
 
 import UIKit
+import Foundation
 
 class BorderedButton: UIButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        layer.borderWidth = 1.0
+        layer.borderWidth = 0.5
         layer.borderColor = tintColor.cgColor
         layer.cornerRadius = layer.frame.height / 2
         clipsToBounds = true
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 30)
-        self.isUserInteractionEnabled = true
-        setTitleColor(tintColor, for: .normal)
-        setTitleColor(.black, for: .highlighted)
+        
+        setTitleColor(.red, for: .normal)
+        layer.borderWidth = 0.5
     }
+
+    
+    var buttonSelected = false {
+        didSet {
+            if buttonSelected {
+                setTitleColor(.blue, for: .normal)
+                layer.borderWidth = 1.0
+                buttonImageView?.image = #imageLiteral(resourceName: "choose")
+            
+            } else {
+                setTitleColor(.red, for: .normal)
+                layer.borderWidth = 0.5
+                buttonImageView?.image = nil
+                
+            }
+        }
+    }
+
+    var buttonImageView: UIImageView?
+    
 }

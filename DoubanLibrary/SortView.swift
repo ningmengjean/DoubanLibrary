@@ -41,7 +41,7 @@ class SortView: UIView {
         didSet{
             if oldValue == type {
                 type = .none
-                promtionImageView.image = nil
+                
                 printResultString()
             } else {
                 printResultString()
@@ -52,7 +52,6 @@ class SortView: UIView {
     var range: PriceRange = .none {
         didSet{
             if oldValue == range {
-                
                 range = .none
                 printResultString()
             } else {
@@ -68,17 +67,18 @@ class SortView: UIView {
                 printResultString()
             } else {
                 printResultString()
+               
             }
         }
     }
     
+    var borderButton: BorderedButton?
+    
     func printResultString() {
         var strArr = [String]()
-        
         if type != .none {
             strArr.append(type.rawValue)
         }
-        
         if range != .none {
             strArr.append(range.rawValue)
         }
@@ -94,11 +94,7 @@ class SortView: UIView {
         }
     }
     
-    @IBOutlet weak var promotionButton: BorderedButton! {
-        didSet {
-            promotionButton.isUserInteractionEnabled = true
-        }
-    }
+    @IBOutlet weak var promotionButton: BorderedButton!
     @IBOutlet weak var promtionImageView: UIImageView!
     @IBOutlet weak var freeButton: BorderedButton!
     @IBOutlet weak var freeImageView: UIImageView!
@@ -122,51 +118,141 @@ class SortView: UIView {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
     
+    var isInited = false
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !isInited {
+            promotionButton.buttonImageView = promtionImageView
+            freeButton.buttonImageView = freeImageView
+            secondButton.buttonImageView = secondImageView
+            thirdButton.buttonImageView = thirdImageView
+            forthButton.buttonImageView = forthImageView
+            fifthButton.buttonImageView = fifthImageView
+            sixthButton.buttonImageView = sixthImageView
+            ebookButton.buttonImageView = ebookImageView
+            columnButton.buttonImageView = columnImageView
+            shortStoryButton.buttonImageView = shortStoryImage
+        }
+    }
 
     @IBAction func choosePromotionButton(_ sender: BorderedButton) {
         type = .promotion
-        promtionImageView?.image = #imageLiteral(resourceName: "choose")
-        
+        if sender.buttonImageView?.image == nil {
+            sender.buttonSelected = true
+        } else {
+            sender.buttonSelected = false
+        }
     }
     @IBAction func choosePriceButton(_ sender: BorderedButton) {
         if sender == freeButton {
             range = .free
-            freeImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = true
+            secondButton.buttonSelected = false
+            thirdButton.buttonSelected = false
+            forthButton.buttonSelected = false
+            fifthButton.buttonSelected = false
+            sixthButton.buttonSelected = false
         } else if sender == secondButton {
             range = .one
-            secondImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = false
+            secondButton.buttonSelected = true
+            thirdButton.buttonSelected = false
+            forthButton.buttonSelected = false
+            fifthButton.buttonSelected = false
+            sixthButton.buttonSelected = false
+
         } else if sender == thirdButton {
             range = .two
-            thirdImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = false
+            secondButton.buttonSelected = false
+            thirdButton.buttonSelected = true
+            forthButton.buttonSelected = false
+            fifthButton.buttonSelected = false
+            sixthButton.buttonSelected = false
+           
         } else if sender == forthButton {
             range = .five
-            forthImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = false
+            secondButton.buttonSelected = false
+            thirdButton.buttonSelected = false
+            forthButton.buttonSelected = true
+            fifthButton.buttonSelected = false
+            sixthButton.buttonSelected = false
         } else if sender == fifthButton {
             range = .ten
-            fifthImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = false
+            secondButton.buttonSelected = false
+            thirdButton.buttonSelected = false
+            forthButton.buttonSelected = false
+            fifthButton.buttonSelected = true
+            sixthButton.buttonSelected = false
         } else if sender == sixthButton {
             range = .twenty
-            sixthImageView?.image = #imageLiteral(resourceName: "choose")
+            freeButton.buttonSelected = false
+            secondButton.buttonSelected = false
+            thirdButton.buttonSelected = false
+            forthButton.buttonSelected = false
+            fifthButton.buttonSelected = false
+            sixthButton.buttonSelected = true
         }
     }
     
     @IBAction func chooseCategoryButton(_ sender: BorderedButton) {
+
         if sender == ebookButton {
             category = .dianzi
+            ebookButton.buttonSelected = true
+            shortStoryButton.buttonSelected = false
+            columnButton.buttonSelected = false
+
         } else if sender == shortStoryButton {
             category = .duanpian
+            shortStoryButton.buttonSelected = true
+            ebookButton.buttonSelected = false
+            columnButton.buttonSelected = false
         } else if sender == columnButton {
             category = .zhuanlan
+            columnButton.buttonSelected = true
+            ebookButton.buttonSelected = false
+            shortStoryButton.buttonSelected = false
         }
     }
     @IBAction func resetStatusLabel(_ sender: UIButton) {
+        statusLable.text = ""
+        statusLable.backgroundColor = .white
+        promotionButton.buttonSelected = false
+        freeButton.buttonSelected = false
+        secondButton.buttonSelected = false
+        thirdButton.buttonSelected = false
+        forthButton.buttonSelected = false
+        fifthButton.buttonSelected = false
+        sixthButton.buttonSelected = false
+        columnButton.buttonSelected = false
+        ebookButton.buttonSelected = false
+        shortStoryButton.buttonSelected = false
+        type = .none
+        range = .none
+        category = .none
     }
+    
+    var searchSortHandler: ((String,Int) -> Void)?
+    var start = 0
+    var hideSortView:(()-> Void)?
+    var sortCount: Any {
+        let text = statusLable.text
+        if text == "" {
+          return  hideSortView!()
+        } else {
+            return (text?.split(separator: "+").count)!
+        }
+    }
+    
     @IBAction func confirmStatusLabel(_ sender: UIButton) {
+        guard let text = statusLable.text, let searchSortHandler = searchSortHandler, let hideSortView = hideSortView  else { return }
+        searchSortHandler(text, start)
+        hideSortView()
     }
-    
-    
-  
- 
 }
 
 
