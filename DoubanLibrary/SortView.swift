@@ -9,39 +9,44 @@
 import UIKit
 import Foundation
 
+enum PromotionType: String {
+    case promotion = "限时特价"
+    case none
+}
+
+enum PriceRange: String {
+    case none
+    case free = "免费"
+    case one = "0.01 - 1.99"
+    case two = "2 - 4.99"
+    case five = "5 - 9.99"
+    case ten = "10 - 19.99"
+    case twenty = "20 及以上"
+}
+
+enum Category: String {
+    case none
+    case dianzi = "电子书"
+    case zhuanlan = "专栏连载"
+    case duanpian = "短篇"
+}
+
+enum selectedCategoryButton<BorderedButton,Bool> {
+    case ebookButton,columButton,shortStoryButton
+}
+
 class SortView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
     }
-    enum PromotionType: String {
-        case promotion = "限时特价"
-        case none
-    }
-    
-    enum PriceRange: String {
-        case none
-        case free = "免费"
-        case one = "0.01 - 1.99"
-        case two = "2 - 4.99"
-        case five = "5 - 9.99"
-        case ten = "10 - 19.99"
-        case twenty = "20 及以上"
-    }
-    
-    enum Category: String {
-        case none
-        case dianzi = "电子书"
-        case zhuanlan = "专栏连载"
-        case duanpian = "短篇"
-    }
+
     
     var type: PromotionType = .none {
         didSet{
             if oldValue == type {
                 type = .none
-                
                 printResultString()
             } else {
                 printResultString()
@@ -67,12 +72,11 @@ class SortView: UIView {
                 printResultString()
             } else {
                 printResultString()
-               
             }
         }
     }
     
-    var borderButton: BorderedButton?
+    
     
     func printResultString() {
         var strArr = [String]()
@@ -146,76 +150,177 @@ class SortView: UIView {
     }
     @IBAction func choosePriceButton(_ sender: BorderedButton) {
         if sender == freeButton {
-            range = .free
-            freeButton.buttonSelected = true
-            secondButton.buttonSelected = false
-            thirdButton.buttonSelected = false
-            forthButton.buttonSelected = false
-            fifthButton.buttonSelected = false
-            sixthButton.buttonSelected = false
+            if freeButton?.buttonImageView?.image == nil {
+                range = .free
+                freeButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                freeButton.buttonSelected = true
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+                forthButton.buttonImageView?.image = nil
+                forthButton.buttonSelected = false
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+            } else {
+                range = .none
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+            }
+         
         } else if sender == secondButton {
-            range = .one
-            freeButton.buttonSelected = false
-            secondButton.buttonSelected = true
-            thirdButton.buttonSelected = false
-            forthButton.buttonSelected = false
-            fifthButton.buttonSelected = false
-            sixthButton.buttonSelected = false
+            if secondButton?.buttonImageView?.image == nil {
+                range = .one
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+                secondButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                secondButton.buttonSelected = true
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+                forthButton.buttonImageView?.image = nil
+                forthButton.buttonSelected = false
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+                
+            } else {
+                range = .none
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+            }
 
         } else if sender == thirdButton {
-            range = .two
-            freeButton.buttonSelected = false
-            secondButton.buttonSelected = false
-            thirdButton.buttonSelected = true
-            forthButton.buttonSelected = false
-            fifthButton.buttonSelected = false
-            sixthButton.buttonSelected = false
-           
+            
+            if thirdButton?.buttonImageView?.image == nil {
+                range = .two
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+                thirdButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                thirdButton.buttonSelected = true
+                forthButton.buttonImageView?.image = nil
+                forthButton.buttonSelected = false
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+            } else {
+                range = .none
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+            }
         } else if sender == forthButton {
-            range = .five
-            freeButton.buttonSelected = false
-            secondButton.buttonSelected = false
-            thirdButton.buttonSelected = false
-            forthButton.buttonSelected = true
-            fifthButton.buttonSelected = false
-            sixthButton.buttonSelected = false
+            if forthButton?.buttonImageView?.image == nil {
+                range = .five
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+                forthButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                forthButton.buttonSelected = true
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+            } else {
+                range = .none
+                forthButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                forthButton.buttonSelected = false
+            }
         } else if sender == fifthButton {
-            range = .ten
-            freeButton.buttonSelected = false
-            secondButton.buttonSelected = false
-            thirdButton.buttonSelected = false
-            forthButton.buttonSelected = false
-            fifthButton.buttonSelected = true
-            sixthButton.buttonSelected = false
+            if fifthButton?.buttonImageView?.image == nil {
+                range = .ten
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+                forthButton.buttonImageView?.image = nil
+                forthButton.buttonSelected = false
+                fifthButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                fifthButton.buttonSelected = true
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+            } else {
+                range = .none
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+            }
         } else if sender == sixthButton {
-            range = .twenty
-            freeButton.buttonSelected = false
-            secondButton.buttonSelected = false
-            thirdButton.buttonSelected = false
-            forthButton.buttonSelected = false
-            fifthButton.buttonSelected = false
-            sixthButton.buttonSelected = true
+            if sixthButton?.buttonImageView?.image == nil {
+                range = .twenty
+                freeButton.buttonImageView?.image = nil
+                freeButton.buttonSelected = false
+                secondButton.buttonImageView?.image = nil
+                secondButton.buttonSelected = false
+                thirdButton.buttonImageView?.image = nil
+                thirdButton.buttonSelected = false
+                forthButton.buttonImageView?.image = nil
+                forthButton.buttonSelected = false
+                fifthButton.buttonImageView?.image = nil
+                fifthButton.buttonSelected = false
+                sixthButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                sixthButton.buttonSelected = true
+            } else {
+                range = .none
+                sixthButton.buttonImageView?.image = nil
+                sixthButton.buttonSelected = false
+            }
         }
     }
     
     @IBAction func chooseCategoryButton(_ sender: BorderedButton) {
-
         if sender == ebookButton {
-            category = .dianzi
-            ebookButton.buttonSelected = true
-            shortStoryButton.buttonSelected = false
-            columnButton.buttonSelected = false
-
+            if ebookButton.buttonImageView?.image == nil {
+                category = .dianzi
+                ebookButton.buttonSelected = true
+                ebookButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                shortStoryButton.buttonSelected = false
+                shortStoryButton.buttonImageView?.image = nil
+                columnButton.buttonSelected = false
+                columnButton.buttonImageView?.image = nil
+            } else {
+                category = .none
+                ebookButton.buttonSelected = false
+                ebookButton.buttonImageView?.image = nil
+            }
+            
         } else if sender == shortStoryButton {
-            category = .duanpian
-            shortStoryButton.buttonSelected = true
-            ebookButton.buttonSelected = false
-            columnButton.buttonSelected = false
+            if shortStoryButton.buttonImageView?.image == nil {
+                category = .duanpian
+                ebookButton.buttonSelected = false
+                ebookButton.buttonImageView?.image = nil
+                shortStoryButton.buttonSelected = true
+                shortStoryButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+                columnButton.buttonSelected = false
+                columnButton.buttonImageView?.image = nil
+            } else {
+                category = .none
+                shortStoryButton.buttonSelected = false
+                shortStoryButton.buttonImageView?.image = nil
+            }
+          
         } else if sender == columnButton {
-            category = .zhuanlan
-            columnButton.buttonSelected = true
-            ebookButton.buttonSelected = false
-            shortStoryButton.buttonSelected = false
+            if columnButton.buttonImageView?.image == nil {
+                category = .zhuanlan
+                ebookButton.buttonSelected = false
+                ebookButton.buttonImageView?.image = nil
+                shortStoryButton.buttonSelected = false
+                shortStoryButton.buttonImageView?.image = nil
+                columnButton.buttonSelected = true
+                columnButton.buttonImageView?.image = #imageLiteral(resourceName: "choose")
+            } else {
+                category = .none
+                columnButton.buttonSelected = false
+                columnButton.buttonImageView?.image = nil
+            }
         }
     }
     @IBAction func resetStatusLabel(_ sender: UIButton) {

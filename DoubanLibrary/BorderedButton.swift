@@ -19,7 +19,7 @@ class BorderedButton: UIButton {
         clipsToBounds = true
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 30)
         
-        setTitleColor(.red, for: .normal)
+        setTitleColor(.darkGray, for: .normal)
         layer.borderWidth = 0.5
     }
 
@@ -32,7 +32,7 @@ class BorderedButton: UIButton {
                 buttonImageView?.image = #imageLiteral(resourceName: "choose")
             
             } else {
-                setTitleColor(.red, for: .normal)
+                setTitleColor(.darkGray, for: .normal)
                 layer.borderWidth = 0.5
                 buttonImageView?.image = nil
                 
