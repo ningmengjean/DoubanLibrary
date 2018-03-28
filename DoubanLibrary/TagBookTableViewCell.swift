@@ -29,17 +29,25 @@ class TagBookTableViewCell: UITableViewCell {
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    var bookId: String?
+    var translators: [String] = []
+    var publisher: String?
+    var author_intro: String?
     
     func configureTagBookTableViewCell(_ result: Book) {
-            titleLabel.text = result.title
-            autherLabel.text = result.author
-            rateLabel.text = "\(result.rating.numRaters) 评价"
-            cosmosView.rating = result.rating.average/2.0
-            cosmosView.text = String(result.rating.average)
-            summaryLabel.text = result.summary
-            priceLabel.text = result.price
+        titleLabel.text = result.title
+        autherLabel.text = result.author
+        rateLabel.text = "\(result.rating.numRaters) 评价"
+        cosmosView.rating = result.rating.average/2.0
+        cosmosView.text = String(result.rating.average)
+        summaryLabel.text = result.summary
+        priceLabel.text = result.price
+        bookId = result.id
         if let image = result.images.mediumImageURL{
             bookImage.kf.setImage(with: image)
         }
+        translators = result.translators
+        publisher = result.publisher
+        author_intro = result.author_intro
     }
 }

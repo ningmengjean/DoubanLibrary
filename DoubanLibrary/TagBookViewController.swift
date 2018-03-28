@@ -149,7 +149,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                     DispatchQueue.main.async {
                         self.book = Book(json: json)
                         self.books = json["books"].arrayValue.map { Book(json: $0) }
-                        self.sortButton.setTitle("(筛选\(self.sortView.sortCount))", for: .normal)
+                        self.sortButton.setTitle("筛选(\(self.sortView.sortCount))", for: .normal)
                         self.sortButton.setTitleColor(.blue, for: .normal)
                         self.tagBookTableView.reloadData()
                     }
@@ -172,8 +172,21 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         }
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? TagBookTableViewCell,segue.identifier == "ToBookDetail" {
+            let controller = segue.destination as! BookDetailViewController
+            controller.bookImage = cell.bookImage.image
+            controller.bookId = cell.bookId
+            controller.bookTitle = cell.titleLabel.text
+            controller.rate = cell.rateLabel.text
+            controller.author = cell.autherLabel.text
+            controller.translators = cell.translators
+            controller.publisher = cell.publisher
+            controller.price = cell.priceLabel.text
+            controller.author_intro = cell.author_intro
+            controller.summary = cell.summaryLabel.text
+        }
+    }
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -432,6 +445,12 @@ extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagBookTableViewCell", for: indexPath) as! TagBookTableViewCell
         cell.configureTagBookTableViewCell(books[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TagBookTableViewCell
+        performSegue(withIdentifier: "ToBookDetail", sender: cell)
+        dismiss(animated: true, completion: nil)
     }
 }
 

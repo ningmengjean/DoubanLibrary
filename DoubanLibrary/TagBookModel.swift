@@ -10,11 +10,11 @@ import Foundation
 
 import SwiftyJSON
 
-struct BookRating {
-    let max: Int
-    let numRaters: String
-    let average: Double
-    let min: Int
+@objc class BookRating: NSObject {
+    @objc let max: Int
+    @objc let numRaters: String
+    @objc let average: Double
+    @objc let min: Int
     
     init(json: JSON) {
         max = json["max"].intValue
@@ -24,10 +24,10 @@ struct BookRating {
     }
 }
 
-struct BooKTag {
-    let count:Int
-    let name: String
-    let title: String
+@objc class BooKTag: NSObject {
+    @objc let count:Int
+    @objc let name: String
+    @objc let title: String
     
     init(json: JSON) {
         count = json["count"].intValue
@@ -36,57 +36,57 @@ struct BooKTag {
     }
 }
 
-struct Images {
-    let small: String
-    let large: String
-    let medium: String
+@objc class Images: NSObject {
+    @objc let small: String
+    @objc let large: String
+    @objc let medium: String
     init(json: JSON) {
         small = json["small"].stringValue
         large = json["large"].stringValue
         medium = json["medium"].stringValue
     }
     
-    var mediumImageURL: URL? {
+    @objc var mediumImageURL: URL? {
         return URL(string: medium)
     }
 }
 
-struct BookSeries {
-    let id: String
-    let title: String
+@objc class BookSeries: NSObject {
+    @objc let id: String
+    @objc let title: String
     init(json: JSON) {
         id = json["id"].stringValue
         title = json["title"].stringValue
     }
 }
 
-struct Book {
-    let tags: [BooKTag]
-    let rating: BookRating
-    let subTitle: String
-    let author: String
-    let pubdate: String
-    let originTitle: String
-    let image: URL?
-    let binding: String
-    var translators: [String]
-    let catalog: String
-    let ebook_url: URL?
-    let pages: Int
-    let images: Images
-    let alt: String
-    let id: String
-    let publisher: String
-    let isbn10: String
-    let isbn13: String
-    let title: String
-    let url: URL?
-    let alt_title: String
-    let author_intro: String
-    let summary: String
-    let ebook_price: Double
-    let series: BookSeries
-    let price: String
+@objc class Book: NSObject {
+    @objc let tags: [BooKTag]
+    @objc let rating: BookRating
+    @objc let subTitle: String
+    @objc let author: String
+    @objc let pubdate: String
+    @objc let originTitle: String
+    @objc let image: URL?
+    @objc let binding: String
+    @objc var translators: [String]
+    @objc let catalog: String
+    @objc let ebook_url: URL?
+    @objc let pages: Int
+    @objc let images: Images
+    @objc let alt: URL?
+    @objc let id: String
+    @objc let publisher: String
+    @objc let isbn10: String
+    @objc let isbn13: String
+    @objc let title: String
+    @objc let url: URL?
+    @objc let alt_title: String
+    @objc let author_intro: String
+    @objc let summary: String
+    @objc let ebook_price: Double
+    @objc let series: BookSeries
+    @objc let price: String
     
     init(json: JSON) {
         tags = json["tags"].arrayValue.map { BooKTag(json: $0) }
@@ -102,7 +102,7 @@ struct Book {
         ebook_url = URL(string:json["ebook_url"].stringValue)
         pages = json["pages"].intValue
         images = Images(json: json["images"])
-        alt = json["alt"].stringValue
+        alt = URL(string:json["alt"].stringValue)
         id = json["id"].stringValue
         publisher = json["publisher"].stringValue
         isbn10 = json["isbn10"].stringValue

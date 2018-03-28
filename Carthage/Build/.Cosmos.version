@@ -1,7 +1,7 @@
 {
   "iOS" : [
     {
-      "hash" : "3e241a7efad47eba4b5fb71ca5e0ba9137485949b6ab5d2ac1a8bcbc0283c2e7",
+      "hash" : "28cc243494f45ee87e7a5b52acacfdc61fc61acdc0b1f8603e079164c5f09403",
       "name" : "Cosmos"
     }
   ],
@@ -11,7 +11,7 @@
   ],
   "tvOS" : [
     {
-      "hash" : "88a81a9908fe5f72be0dcbe78a4184d42f0f53c6962bec037703eae953a42db3",
+      "hash" : "a4f95a92dc769205f0386a396805a723fcdf3280b56415cb86efd753e02684d6",
       "name" : "Cosmos"
     }
   ],

@@ -200,11 +200,46 @@
                         <outlet property="sortButton" destination="GzI-qx-JXt" id="nZB-xo-SPd"/>
                         <outlet property="spinner" destination="hjN-ff-OIA" id="5yB-uV-Bfu"/>
                         <outlet property="tagBookTableView" destination="IzG-sl-QyC" id="Ob0-nm-ruL"/>
+                        <segue destination="BgI-mR-thV" kind="show" identifier="ToBookDetail" id="qYe-6c-vhO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2W-hp-U9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1092" y="-124.58770614692655"/>
+        </scene>
+        <!--Book Detail View Controller-->
+        <scene sceneID="uBR-3N-Oyr">
+            <objects>
+                <viewController id="BgI-mR-thV" customClass="BookDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OX3-JO-rEP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="suO-sf-i4z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BgI-mR-thV" id="mhX-HV-2fb"/>
+                                    <outlet property="delegate" destination="BgI-mR-thV" id="FwL-wH-RVZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="suO-sf-i4z" firstAttribute="bottom" secondItem="C5h-Ss-3q2" secondAttribute="bottom" id="9Hc-d0-ZeQ"/>
+                            <constraint firstItem="suO-sf-i4z" firstAttribute="top" secondItem="C5h-Ss-3q2" secondAttribute="top" id="Ybg-Jb-AO6"/>
+                            <constraint firstItem="suO-sf-i4z" firstAttribute="leading" secondItem="C5h-Ss-3q2" secondAttribute="leading" id="lzb-5q-Mhp"/>
+                            <constraint firstItem="suO-sf-i4z" firstAttribute="trailing" secondItem="C5h-Ss-3q2" secondAttribute="trailing" id="u0e-dd-Fmh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C5h-Ss-3q2"/>
+                    </view>
+                    <connections>
+                        <outlet property="bookDetailTableView" destination="suO-sf-i4z" id="ld4-9E-3Ff"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpD-fW-cFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1893.5999999999999" y="-125.4872563718141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="92L-tg-cKc">

@@ -76,8 +76,6 @@ class SortView: UIView {
         }
     }
     
-    
-    
     func printResultString() {
         var strArr = [String]()
         if type != .none {
