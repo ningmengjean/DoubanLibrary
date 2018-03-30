@@ -14,7 +14,7 @@ class TagBookTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var autherLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView! {
         didSet {
             cosmosView.settings.updateOnTouch = false
@@ -33,10 +33,11 @@ class TagBookTableViewCell: UITableViewCell {
     var translators: [String] = []
     var publisher: String?
     var author_intro: String?
+    var tags: [String] = []
     
     func configureTagBookTableViewCell(_ result: Book) {
         titleLabel.text = result.title
-        autherLabel.text = result.author
+        authorLabel.text = result.author
         rateLabel.text = "\(result.rating.numRaters) 评价"
         cosmosView.rating = result.rating.average/2.0
         cosmosView.text = String(result.rating.average)
@@ -49,5 +50,6 @@ class TagBookTableViewCell: UITableViewCell {
         translators = result.translators
         publisher = result.publisher
         author_intro = result.author_intro
+        tags = result.tags.map{$0.title}
     }
 }

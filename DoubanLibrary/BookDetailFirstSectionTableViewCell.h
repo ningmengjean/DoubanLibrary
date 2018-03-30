@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *translatorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publisherLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *starImageView;
 
 @end
 

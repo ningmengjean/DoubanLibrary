@@ -35,6 +35,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     
     var hotCategoryView = HotGategoryView()
     
+    var collecionTagHandler: ((_ text:String, _ start:Int) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonView.frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -101,22 +103,22 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
         
         categoryView.delegate = self
         
-        hotCategoryView.searchHotCategoryHandler = { (tag, start) in
-            self.provider.request(.searchHotCategoryHandler(tag: tag, start: start)) { (result) in
+        hotCategoryView.searchHotCategoryHandler = { [weak self] (tag, start) in
+            self?.provider.request(.searchHotCategoryHandler(tag: tag, start: start)) { [weak self] (result) in
                 switch result {
                 case .failure(_):
                     DispatchQueue.main.async {
-                        self.showNetworkError()
+                        self?.showNetworkError()
                     }
                 case .success(let moyaResponse):
-                    let json = self.parseJSON(moyaResponse.data)
-                    self.spinner.stopAnimating()
+                    guard let json = self?.parseJSON(moyaResponse.data) else { return }
+                    self?.spinner.stopAnimating()
                     DispatchQueue.main.async {
-                        self.book = Book(json: json)
-                        self.books = json["books"].arrayValue.map { Book(json: $0) }
-                        self.hotButton.setTitle(tag, for: .normal)
-                        self.hotButton.setTitleColor(.blue, for: .normal)
-                        self.tagBookTableView.reloadData()
+                        self?.book = Book(json: json)
+                        self?.books = json["books"].arrayValue.map { Book(json: $0) }
+                        self?.hotButton.setTitle(tag, for: .normal)
+                        self?.hotButton.setTitleColor(.blue, for: .normal)
+                        self?.tagBookTableView.reloadData()
                     }
                 }
             }
@@ -136,22 +138,27 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             })
         }
         
-        sortView.searchSortHandler = { (tag, start) in
-            self.provider.request(.searchSortHandler(tag: tag, start: start)) { (result) in
+        sortView.searchSortHandler = { [weak self] (tag, start) in
+            self?.provider.request(.searchSortHandler(tag: tag, start: start)) { [weak self] (result) in
                 switch result {
                 case .failure(_):
                     DispatchQueue.main.async {
-                        self.showNetworkError()
+                        self?.showNetworkError()
                     }
                 case .success(let moyaResponse):
-                    let json = self.parseJSON(moyaResponse.data)
-                    self.spinner.stopAnimating()
+                    guard let json = self?.parseJSON(moyaResponse.data) else { return }
+                    self?.spinner.stopAnimating()
                     DispatchQueue.main.async {
-                        self.book = Book(json: json)
-                        self.books = json["books"].arrayValue.map { Book(json: $0) }
-                        self.sortButton.setTitle("筛选(\(self.sortView.sortCount))", for: .normal)
-                        self.sortButton.setTitleColor(.blue, for: .normal)
-                        self.tagBookTableView.reloadData()
+                        self?.book = Book(json: json)
+                        self?.books = json["books"].arrayValue.map { Book(json: $0) }
+                        let count = self?.sortView.sortCount
+                        if count == 0 {
+                           self?.sortButton.setTitle("筛选", for: .normal)
+                        } else if count != nil {
+                            self?.sortButton.setTitle("筛选(\(count!))", for: .normal)
+                        }
+                        self?.sortButton.setTitleColor(.blue, for: .normal)
+                        self?.tagBookTableView.reloadData()
                     }
                 }
             }
@@ -170,6 +177,27 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                             self.spinner.startAnimating()
             })
         }
+        
+        self.collecionTagHandler = { [weak self] (tag, start) in
+            self?.provider.request(.collecionTagHandler(tag: tag, start: start)) { [weak self] (result) in
+                switch result {
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self?.showNetworkError()
+                    }
+                case .success(let moyaResponse):
+                    guard let json = self?.parseJSON(moyaResponse.data) else { return }
+                    self?.spinner.stopAnimating()
+                    DispatchQueue.main.async {
+                        self?.book = Book(json: json)
+                        self?.books = json["books"].arrayValue.map { Book(json: $0) }
+                        self?.categoryText.text! = tag
+                        self?.categoryText.textColor = UIColor.blue
+                        self?.tagBookTableView.reloadData()
+                    }
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -179,12 +207,15 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             controller.bookId = cell.bookId
             controller.bookTitle = cell.titleLabel.text
             controller.rate = cell.rateLabel.text
-            controller.author = cell.autherLabel.text
+            controller.author = cell.authorLabel.text
             controller.translators = cell.translators
             controller.publisher = cell.publisher
             controller.price = cell.priceLabel.text
             controller.author_intro = cell.author_intro
             controller.summary = cell.summaryLabel.text
+            controller.tags = cell.tags
+            controller.starImage = shotScreenImage
+            controller.collecionTagHandler = collecionTagHandler!
         }
     }
     
@@ -367,40 +398,40 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
     let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin()])
     
     func getTagBookLibrary(_ tag: String, start: Int) {
-        provider.request(.getTagBookLibrary(tag: tag, start: start)) { (result) in
+        provider.request(.getTagBookLibrary(tag: tag, start: start)) { [weak self] (result) in
             switch result {
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.showNetworkError()
+                    self?.showNetworkError()
                 }
             case .success(let moyaResponse):
-                let json = self.parseJSON(moyaResponse.data)
-                self.spinner.stopAnimating()
+                guard let json = self?.parseJSON(moyaResponse.data) else { return }
+                self?.spinner.stopAnimating()
                 DispatchQueue.main.async {
-                    self.book = Book(json: json)
-                    self.books += json["books"].arrayValue.map { Book(json: $0) }
-                    self.tagBookTableView.reloadData()
+                    self?.book = Book(json: json)
+                    self?.books += json["books"].arrayValue.map { Book(json: $0) }
+                    self?.tagBookTableView.reloadData()
                 }
             }
         }
     }
     
     func getTagBookLibraryFromDetailList(_ tag: String, start: Int) {
-        provider.request(.getTagBookLibrary(tag: tag, start: start)) { (result) in
+        provider.request(.getTagBookLibrary(tag: tag, start: start)) { [weak self] (result) in
             switch result {
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.showNetworkError()
+                    self?.showNetworkError()
                 }
             case .success(let moyaResponse):
-                let json = self.parseJSON(moyaResponse.data)
-                self.spinner.stopAnimating()
+                guard let json = self?.parseJSON(moyaResponse.data) else { return }
+                self?.spinner.stopAnimating()
                 DispatchQueue.main.async {
-                    self.book = Book(json: json)
-                    self.books = json["books"].arrayValue.map { Book(json: $0) }
-                    self.categoryText.text! = tag 
-                    self.categoryText.textColor = UIColor.blue
-                    self.tagBookTableView.reloadData()
+                    self?.book = Book(json: json)
+                    self?.books = json["books"].arrayValue.map { Book(json: $0) }
+                    self?.categoryText.text! = tag
+                    self?.categoryText.textColor = UIColor.blue
+                    self?.tagBookTableView.reloadData()
                 }
             }
         }
@@ -433,6 +464,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                         self.spinner.startAnimating()
         })
     }
+    var shotScreenImage = UIImage()
 }
 
 extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
@@ -449,13 +481,16 @@ extension TagBookViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TagBookTableViewCell
+        shotScreenImage = cell.cosmosView.screenshot()
         performSegue(withIdentifier: "ToBookDetail", sender: cell)
         dismiss(animated: true, completion: nil)
     }
 }
 
 extension TagBookViewController: KRPullLoadViewDelegate {
+    
     func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+        
         if type == .loadMore {
             switch state {
             case let .loading(completionHandler):
@@ -468,26 +503,19 @@ extension TagBookViewController: KRPullLoadViewDelegate {
             }
             return
         }
-        
-        switch state {
-        case .none:
-            pullLoadView.messageLabel.text = ""
-            
-        case let .pulling(offset, threshould):
-            if offset.y > threshould {
-                pullLoadView.messageLabel.text = "Pull more. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
-            } else {
-                pullLoadView.messageLabel.text = "Release to refresh. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
-            }
-            
-        case let .loading(completionHandler):
-            pullLoadView.messageLabel.text = "Updating..."
-            //            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
-            completionHandler()
-            self.tagBookTableView.reloadData()
-            //            }
+    }
+    
+    
+}
+
+extension UIView {
+    
+    func screenshot() -> UIImage {
+        return UIGraphicsImageRenderer(size: bounds.size).image { _ in
+            drawHierarchy(in: CGRect(origin: .zero, size: bounds.size), afterScreenUpdates: true)
         }
     }
+    
 }
 
 fileprivate extension String {

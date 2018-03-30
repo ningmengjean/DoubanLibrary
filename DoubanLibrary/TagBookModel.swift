@@ -64,7 +64,7 @@ import SwiftyJSON
     @objc let tags: [BooKTag]
     @objc let rating: BookRating
     @objc let subTitle: String
-    @objc let author: String
+    @objc let author: String?
     @objc let pubdate: String
     @objc let originTitle: String
     @objc let image: URL?
@@ -92,7 +92,7 @@ import SwiftyJSON
         tags = json["tags"].arrayValue.map { BooKTag(json: $0) }
         rating = BookRating(json: json["rating"])
         subTitle = json["subtitle"].stringValue
-        author = json["author"].stringValue
+        author = json["author"].arrayValue.map{$0.stringValue}.first
         pubdate = json["pubdate"].stringValue
         originTitle = json["origin_title"].stringValue
         image = URL(string:json["image"].stringValue)

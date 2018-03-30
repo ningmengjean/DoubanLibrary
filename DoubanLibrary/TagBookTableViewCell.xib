@@ -31,8 +31,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="auther" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKb-t3-q1T">
-                        <rect key="frame" x="116" y="35.5" width="239" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKb-t3-q1T">
+                        <rect key="frame" x="116" y="35.5" width="239" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="autherLabel" destination="HKb-t3-q1T" id="pDW-4J-15D"/>
+                <outlet property="authorLabel" destination="HKb-t3-q1T" id="pDW-4J-15D"/>
                 <outlet property="bookImage" destination="WsK-5T-WLo" id="qhw-gy-JtU"/>
                 <outlet property="cosmosView" destination="atx-lg-8Kl" id="j8e-Gu-Maw"/>
                 <outlet property="priceLabel" destination="BC5-tY-isx" id="Zk1-jt-HoO"/>

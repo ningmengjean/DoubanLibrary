@@ -21,7 +21,7 @@
 		7226B89B20692CB100CEC92A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729653B82020B5D7008CD05B /* Kingfisher.framework */; };
 		7226B89C20692CBE00CEC92A /* KRPullLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72375B402029E127001F657A /* KRPullLoader.framework */; };
 		7226B89D20692CC600CEC92A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729653B52020AA0F008CD05B /* SwiftyJSON.framework */; };
-		7226B8A0206B2B3A00CEC92A /* BookDetailThirdSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7226B89F206B2B3A00CEC92A /* BookDetailThirdSectionTableViewCell.m */; };
+		7226B8A8206B48C300CEC92A /* BookTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B8A7206B48C300CEC92A /* BookTagTableViewCell.swift */; };
 		7244AC8D2050F037001EB9F4 /* HotGategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244AC8C2050F037001EB9F4 /* HotGategoryView.swift */; };
 		7265BC97202DE40700784E2E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265BC96202DE40700784E2E /* CategoryView.swift */; };
 		7265BC99202E004700784E2E /* CategoryArrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265BC98202E004700784E2E /* CategoryArrays.swift */; };
@@ -55,8 +55,7 @@
 		7226B8942068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailSecondSectionTableViewCell.h; sourceTree = "<group>"; };
 		7226B8952068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailSecondSectionTableViewCell.m; sourceTree = "<group>"; };
 		7226B8962068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookDetailSecondSectionTableViewCell.xib; sourceTree = "<group>"; };
-		7226B89E206B2B3900CEC92A /* BookDetailThirdSectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailThirdSectionTableViewCell.h; sourceTree = "<group>"; };
-		7226B89F206B2B3A00CEC92A /* BookDetailThirdSectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailThirdSectionTableViewCell.m; sourceTree = "<group>"; };
+		7226B8A7206B48C300CEC92A /* BookTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTagTableViewCell.swift; sourceTree = "<group>"; };
 		72375B402029E127001F657A /* KRPullLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRPullLoader.framework; path = Carthage/Build/iOS/KRPullLoader.framework; sourceTree = "<group>"; };
 		7244AC8C2050F037001EB9F4 /* HotGategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotGategoryView.swift; sourceTree = "<group>"; };
 		7265BC96202DE40700784E2E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -148,13 +147,12 @@
 				7226B88F2067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.h */,
 				7226B8902067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.m */,
 				7226B8912067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.xib */,
-				7226B89E206B2B3900CEC92A /* BookDetailThirdSectionTableViewCell.h */,
-				7226B89F206B2B3A00CEC92A /* BookDetailThirdSectionTableViewCell.m */,
 				7226B8942068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.h */,
 				7226B8952068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.m */,
 				7226B8962068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.xib */,
 				7226B88A2064937C00CEC92A /* BookDetailViewController.h */,
 				7226B88B2064937C00CEC92A /* BookDetailViewController.m */,
+				7226B8A7206B48C300CEC92A /* BookTagTableViewCell.swift */,
 				729653C02021AAA2008CD05B /* NetworkService.swift */,
 				7265BC96202DE40700784E2E /* CategoryView.swift */,
 				7265BC98202E004700784E2E /* CategoryArrays.swift */,
@@ -362,7 +360,6 @@
 			files = (
 				7226B8922067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.m in Sources */,
 				729653A92020618C008CD05B /* TagBookViewController.swift in Sources */,
-				7226B8A0206B2B3A00CEC92A /* BookDetailThirdSectionTableViewCell.m in Sources */,
 				729653A1201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift in Sources */,
 				7244AC8D2050F037001EB9F4 /* HotGategoryView.swift in Sources */,
 				7296538D201F0486008CD05B /* AppDelegate.swift in Sources */,
@@ -372,6 +369,7 @@
 				721C467A2046DA1D005BE86C /* SortView.swift in Sources */,
 				729653AB20209E50008CD05B /* TagBookModel.swift in Sources */,
 				721C467E204CD753005BE86C /* BorderedButton.swift in Sources */,
+				7226B8A8206B48C300CEC92A /* BookTagTableViewCell.swift in Sources */,
 				729653A3201F0B7A008CD05B /* LibraryBookTagViewController.swift in Sources */,
 				7265BC97202DE40700784E2E /* CategoryView.swift in Sources */,
 				7265BC99202E004700784E2E /* CategoryArrays.swift in Sources */,
@@ -515,7 +513,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3EFB1D19DEB59BC5EF1212F /* Pods-DoubanLibrary.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -540,7 +537,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CBD4AA6CD236371662613E4C /* Pods-DoubanLibrary.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

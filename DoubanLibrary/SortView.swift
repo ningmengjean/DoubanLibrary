@@ -342,10 +342,10 @@ class SortView: UIView {
     var searchSortHandler: ((String,Int) -> Void)?
     var start = 0
     var hideSortView:(()-> Void)?
-    var sortCount: Any {
+    var sortCount: Int {
         let text = statusLable.text
         if text == "" {
-          return  hideSortView!()
+          return  0
         } else {
             return (text?.split(separator: "+").count)!
         }

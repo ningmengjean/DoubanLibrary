@@ -8,19 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface BookDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> 
 
-@property (weak, nonatomic) IBOutlet UITableView *bookDetailTableView;
-@property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *rate;
-@property (nonatomic, strong) NSString *author;
-@property (nonatomic, strong) NSArray *translators;
-@property (nonatomic, strong) NSString *publisher;
-@property (nonatomic, strong) NSString *price;
-@property (nonatomic, strong) NSString *author_intro;
-@property (nonatomic, strong) NSString *summary;
-@property (nonatomic, strong) UIImage *bookImage;
-@property (nonatomic, strong) NSString *bookId;
+@property (weak, nonatomic) IBOutlet UITableView * _Nullable bookDetailTableView;
+@property (nonatomic, strong) NSString * _Nullable bookTitle;
+@property (nonatomic, strong) NSString * _Nullable rate;
+@property (nonatomic, strong) NSString * _Nullable author;
+@property (nonatomic, strong) NSArray * _Nullable translators;
+@property (nonatomic, strong) NSString * _Nullable publisher;
+@property (nonatomic, strong) NSString * _Nullable price;
+@property (nonatomic, strong) NSString * _Nullable author_intro;
+@property (nonatomic, strong) NSString * _Nullable summary;
+@property (nonatomic, strong) UIImage * _Nullable bookImage;
+@property (nonatomic, strong) NSString * _Nullable bookId;
+@property (nonatomic, strong) NSArray * _Nullable tags;
+@property (nonatomic, strong) UIImage * _Nullable starImage;
 
+typedef void(^collecionTagHandler)(NSString* _Nonnull tag,NSInteger start);
+@property (nonatomic, copy) collecionTagHandler _Nonnull collecionTagHandler;
 
 @end
