@@ -54,19 +54,18 @@
         case 0:{
             BookDetailFirstSectionTableViewCell *cell = (BookDetailFirstSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:FirstCellIdentiferId];
             cell.titleLabel.text = _bookTitle;
-//            cell.titleLabel.textColor = [UIColor blueColor];
             cell.rateLabel.text = [NSString stringWithFormat:@"%@", _rate];
-            cell.rateLabel.textColor = [UIColor blueColor];
+            cell.rateLabel.textColor = [UIColor blackColor];
             cell.authorLabel.text = _author;
-            cell.authorLabel.textColor = [UIColor blueColor];
+            cell.authorLabel.textColor = [UIColor blackColor];
             if (_translators.count > 0) {
                 cell.translatorLabel.text = _translators[0];
-                cell.translatorLabel.textColor = [UIColor blueColor];
+                cell.translatorLabel.textColor = [UIColor blackColor];
             }
             cell.publisherLabel.text = _publisher;
-            cell.publisherLabel.textColor = [UIColor blueColor];
+            cell.publisherLabel.textColor = [UIColor blackColor];
             cell.priceLabel.text = _price;
-            cell.priceLabel.textColor = [UIColor blueColor];
+            cell.priceLabel.textColor = [UIColor blackColor];
             cell.bookImageView.image = _bookImage;
             cell.starImageView.image = _starImage;
             return cell;
@@ -76,12 +75,12 @@
             if (indexPath.row == 1) {
                 cell.introLabel.text = @"作者简介";
                 cell.detailLabel.text = _author_intro;
-                cell.detailLabel.textColor = [UIColor blueColor];
+                cell.detailLabel.textColor = [UIColor blackColor];
                 return cell;
             } else {
                 cell.introLabel.text = @"简介";
                 cell.detailLabel.text = _summary;
-                cell.detailLabel.textColor = [UIColor blueColor];
+                cell.detailLabel.textColor = [UIColor blackColor];
                 return cell;
             }
         }

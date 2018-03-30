@@ -178,8 +178,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             })
         }
         
-        self.collecionTagHandler = { [weak self] (tag, start) in
-            self?.provider.request(.collecionTagHandler(tag: tag, start: start)) { [weak self] (result) in
+        self.collecionTagHandler = { (tag, start) in
+            self.provider.request(.collecionTagHandler(tag: tag, start: start)) { [weak self] (result) in
                 switch result {
                 case .failure(_):
                     DispatchQueue.main.async {
@@ -197,6 +197,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                     }
                 }
             }
+            self.spinner.startAnimating()
         }
     }
     
@@ -410,6 +411,7 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                 DispatchQueue.main.async {
                     self?.book = Book(json: json)
                     self?.books += json["books"].arrayValue.map { Book(json: $0) }
+                    self?.categoryText.text! = tag
                     self?.tagBookTableView.reloadData()
                 }
             }

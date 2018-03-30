@@ -48,13 +48,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="summary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBw-2a-6t1">
-                        <rect key="frame" x="116" y="81" width="239" height="100"/>
+                        <rect key="frame" x="116" y="81" width="239" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC5-tY-isx">
-                        <rect key="frame" x="116" y="184" width="59" height="16"/>
+                        <rect key="frame" x="116" y="101" width="59" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -70,6 +70,7 @@
                     <constraint firstAttribute="trailing" secondItem="BC5-tY-isx" secondAttribute="trailing" constant="200" id="PWK-ac-hJz"/>
                     <constraint firstItem="atx-lg-8Kl" firstAttribute="top" secondItem="HKb-t3-q1T" secondAttribute="bottom" constant="5" id="Ply-fB-9uI"/>
                     <constraint firstAttribute="bottom" secondItem="BC5-tY-isx" secondAttribute="bottom" constant="10" id="QQG-h4-7ay"/>
+                    <constraint firstAttribute="bottom" secondItem="WsK-5T-WLo" secondAttribute="bottom" constant="30" id="R9B-lc-45a"/>
                     <constraint firstItem="atx-lg-8Kl" firstAttribute="leading" secondItem="WsK-5T-WLo" secondAttribute="trailing" constant="8" id="V0t-Ae-65t"/>
                     <constraint firstItem="WsK-5T-WLo" firstAttribute="top" secondItem="rSa-P3-l9e" secondAttribute="top" constant="10" id="aLe-n3-0am"/>
                     <constraint firstItem="qBw-2a-6t1" firstAttribute="leading" secondItem="WsK-5T-WLo" secondAttribute="trailing" constant="8" id="fgc-m6-DRL"/>

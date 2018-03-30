@@ -100,7 +100,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzI-qx-JXt">
                                         <rect key="frame" x="125" y="0.0" width="125" height="40"/>
                                         <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="13"/>
-                                        <state key="normal" title="筛选"/>
+                                        <state key="normal" title="筛选">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="showSortView:" destination="Fnp-Nm-79W" eventType="touchUpInside" id="xpf-7n-3gy"/>
                                         </connections>
@@ -115,7 +117,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaQ-fk-YU5">
                                         <rect key="frame" x="250" y="0.0" width="125" height="40"/>
                                         <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="13"/>
-                                        <state key="normal" title="热门"/>
+                                        <state key="normal" title="热门">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="showHotGategoryView:" destination="Fnp-Nm-79W" eventType="touchUpInside" id="6Kw-Nt-JWI"/>
                                         </connections>
@@ -166,7 +170,7 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-ff-OIA">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-ff-OIA">
                                 <rect key="frame" x="167.5" y="345.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7SI-a7-TGg"/>
