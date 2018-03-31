@@ -92,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJx-jl-dT8">
-                                        <rect key="frame" x="5" y="0.0" width="92" height="40"/>
+                                        <rect key="frame" x="5" y="0.0" width="0.0" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -153,7 +153,7 @@
                                     <constraint firstItem="01O-xu-V3E" firstAttribute="leading" secondItem="Hth-FH-Zr4" secondAttribute="leading" constant="105" id="aM9-4z-KPh"/>
                                     <constraint firstAttribute="height" constant="40" id="afR-Sk-wiP"/>
                                     <constraint firstAttribute="bottom" secondItem="GzI-qx-JXt" secondAttribute="bottom" id="beB-a5-rDV"/>
-                                    <constraint firstItem="01O-xu-V3E" firstAttribute="leading" relation="lessThanOrEqual" secondItem="bJx-jl-dT8" secondAttribute="trailing" constant="8" symbolic="YES" id="bic-NQ-a1X"/>
+                                    <constraint firstItem="01O-xu-V3E" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bJx-jl-dT8" secondAttribute="trailing" constant="8" symbolic="YES" id="bic-NQ-a1X"/>
                                     <constraint firstItem="bJx-jl-dT8" firstAttribute="top" secondItem="2Jz-oG-mvn" secondAttribute="top" id="cfc-eD-Bmf"/>
                                     <constraint firstItem="liY-Cz-v7F" firstAttribute="centerY" secondItem="iaQ-fk-YU5" secondAttribute="centerY" id="d4a-pK-Wb5"/>
                                     <constraint firstItem="bJx-jl-dT8" firstAttribute="leading" secondItem="Hth-FH-Zr4" secondAttribute="leading" constant="5" id="gfG-Aj-61S"/>

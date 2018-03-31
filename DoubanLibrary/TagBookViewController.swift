@@ -284,6 +284,13 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             view.layoutIfNeeded()
             categoryToTopConstraint.priority = UILayoutPriority.defaultHigh
             categoryToBottomConstraint.priority = UILayoutPriority.defaultLow
+            if self.sortViewIsOnTheTop == false {
+                self.showSortView(sortButton)
+            }
+            if self.hotCategoryViewIsOnTheTop == false {
+                self.showHotGategoryView(hotButton)
+            }
+          
             UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlDown,
@@ -312,6 +319,12 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             view.layoutIfNeeded()
             sortToTopConstraint.priority = UILayoutPriority.defaultHigh
             sortToBottomConstraint.priority = UILayoutPriority.defaultLow
+            if self.categoryViewIsOnTheTop == false {
+                self.showCategoryView(categoryButton)
+            }
+            if self.hotCategoryViewIsOnTheTop == false {
+                self.showHotGategoryView(hotButton)
+            }
             sortView.backgroundColor = .white
             UIView.animate(withDuration: 0.3,
                            delay: 0,
@@ -341,6 +354,12 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
             view.layoutIfNeeded()
             hotToTopConstraint.priority = UILayoutPriority.defaultHigh
             hotToBottomConstraint.priority = UILayoutPriority.defaultLow
+            if self.categoryViewIsOnTheTop == false {
+                self.showCategoryView(categoryButton)
+            }
+            if self.sortViewIsOnTheTop == false {
+                self.showSortView(sortButton)
+            }
             UIView.animate(withDuration: 0.3,
                            delay: 0,
                            options: UIViewAnimationOptions.transitionCurlDown,
@@ -348,6 +367,8 @@ class TagBookViewController: UIViewController, CategoryViewDelegate {
                             self.view.layoutIfNeeded()
                             self.hotArrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                             self.hotCategoryViewIsOnTheTop = false
+                            self.categoryViewIsOnTheTop = true
+                            self.sortViewIsOnTheTop = true
             })
         } else {
             view.layoutIfNeeded()
