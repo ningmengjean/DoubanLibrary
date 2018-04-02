@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DoubanLibrary-Swift.h"
+
+@protocol showDetailDelegate <NSObject>
+
+@required
+- (void)showDetailCell;
+
+@end
 
 @interface BookDetailSecondSectionTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *introLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel*  introLabel;
+@property (weak, nonatomic) IBOutlet UILabel*  detailLabel;
+@property (weak, nonatomic) IBOutlet UIButton*  pullDownButton;
+@property (weak, nonatomic) IBOutlet UIImageView *pullDownImageView;
+@property (nonatomic, weak) id <showDetailDelegate> delegate;
+- (IBAction)showFullContentCell:(UIButton*)sender;
 
 @end

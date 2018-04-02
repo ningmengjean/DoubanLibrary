@@ -11,4 +11,10 @@
 
 @implementation BookDetailSecondSectionTableViewCell
 
+
+- (IBAction)showFullContentCell:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(showDetailCell)]) {
+        [self.delegate showDetailCell];
+    }
+}
 @end

@@ -17,7 +17,7 @@ import UIKit
         }
     }
 
-    private var textLabelColor: UIColor = UIColor.blue
+    private var textLabelColor: UIColor = UIColor.black
 
     private var collectionCellBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.1)
     

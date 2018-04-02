@@ -36,6 +36,8 @@
 		729653BD202199E0008CD05B /* TagBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 729653BC202199E0008CD05B /* TagBookTableViewCell.xib */; };
 		729653BF20219E4C008CD05B /* TagBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */; };
 		729653C12021AAA2008CD05B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729653C02021AAA2008CD05B /* NetworkService.swift */; };
+		72F0D9F0206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F0D9EE206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.m */; };
+		72F0D9F1206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72F0D9EF206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.xib */; };
 		D8FD12E1FDF323DF97D2EB46 /* Pods_DoubanLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251F4E8513BEA088B3F827D5 /* Pods_DoubanLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,9 @@
 		729653BC202199E0008CD05B /* TagBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagBookTableViewCell.xib; sourceTree = "<group>"; };
 		729653BE20219E4C008CD05B /* TagBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookTableViewCell.swift; sourceTree = "<group>"; };
 		729653C02021AAA2008CD05B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		72F0D9ED206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailSecondSectionWithFullContentTableViewCell.h; sourceTree = "<group>"; };
+		72F0D9EE206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailSecondSectionWithFullContentTableViewCell.m; sourceTree = "<group>"; };
+		72F0D9EF206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookDetailSecondSectionWithFullContentTableViewCell.xib; sourceTree = "<group>"; };
 		CBD4AA6CD236371662613E4C /* Pods-DoubanLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubanLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary.release.xcconfig"; sourceTree = "<group>"; };
 		F3EFB1D19DEB59BC5EF1212F /* Pods-DoubanLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubanLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoubanLibrary/Pods-DoubanLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +155,9 @@
 				7226B8942068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.h */,
 				7226B8952068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.m */,
 				7226B8962068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.xib */,
+				72F0D9ED206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.h */,
+				72F0D9EE206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.m */,
+				72F0D9EF206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.xib */,
 				7226B88A2064937C00CEC92A /* BookDetailViewController.h */,
 				7226B88B2064937C00CEC92A /* BookDetailViewController.m */,
 				7226B8A7206B48C300CEC92A /* BookTagTableViewCell.swift */,
@@ -265,6 +273,7 @@
 				72965397201F0486008CD05B /* LaunchScreen.storyboard in Resources */,
 				729653BD202199E0008CD05B /* TagBookTableViewCell.xib in Resources */,
 				7226B8052051933900CEC92A /* HotCategoryTableViewCell.xib in Resources */,
+				72F0D9F1206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.xib in Resources */,
 				72965394201F0486008CD05B /* Assets.xcassets in Resources */,
 				7226B8982068A1AD00CEC92A /* BookDetailSecondSectionTableViewCell.xib in Resources */,
 				7226B8932067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.xib in Resources */,
@@ -360,6 +369,7 @@
 			files = (
 				7226B8922067A1FE00CEC92A /* BookDetailFirstSectionTableViewCell.m in Sources */,
 				729653A92020618C008CD05B /* TagBookViewController.swift in Sources */,
+				72F0D9F0206F6B1A001C57E4 /* BookDetailSecondSectionWithFullContentTableViewCell.m in Sources */,
 				729653A1201F073B008CD05B /* LibraryBookTagCollectionViewCell.swift in Sources */,
 				7244AC8D2050F037001EB9F4 /* HotGategoryView.swift in Sources */,
 				7296538D201F0486008CD05B /* AppDelegate.swift in Sources */,

@@ -9,6 +9,7 @@
 #import "BookDetailViewController.h"
 #import "BookDetailFirstSectionTableViewCell.h"
 #import "BookDetailSecondSectionTableViewCell.h"
+#import "BookDetailSecondSectionWithFullContentTableViewCell.h"
 #import "DoubanLibrary-Swift.h"
 
 @interface BookDetailViewController () 
@@ -24,11 +25,18 @@
     [self.bookDetailTableView registerNib:[UINib nibWithNibName:@"BookDetailFirstSectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"BookDetailFirstSectionTableViewCell"];
     [self.bookDetailTableView registerNib:[UINib nibWithNibName:@"BookDetailSecondSectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"BookDetailSecondSectionTableViewCell"];
     [self.bookDetailTableView registerClass:[BookTagTableViewCell class] forCellReuseIdentifier:@"BookTagTableViewCell"];
+    [self.bookDetailTableView registerNib:[UINib nibWithNibName:@"BookDetailSecondSectionWithFullContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"BookDetailSecondSectionWithFullContentTableViewCell"];
     self.bookDetailTableView.estimatedRowHeight = 150;
     self.bookDetailTableView.rowHeight = UITableViewAutomaticDimension;
-    
 }
-
+-(void)showDetailCell {
+    _showDetail = YES;
+    [_bookDetailTableView reloadData];
+}
+-(void)backToSimpleCell {
+    _showDetail = NO;
+    [_bookDetailTableView reloadData];
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
@@ -49,6 +57,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString  *FirstCellIdentiferId = @"BookDetailFirstSectionTableViewCell";
     static NSString  *SecondCellIdentiferId = @"BookDetailSecondSectionTableViewCell";
+    static NSString  *SecondFullContentCellIdentiferId = @"BookDetailSecondSectionWithFullContentTableViewCell";
     static NSString *ThirdCellIdentiferId = @"BookTagTableViewCell";
     switch (indexPath.section) {
         case 0:{
@@ -71,17 +80,62 @@
             return cell;
         }
         case 1: {
-            BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
-            if (indexPath.row == 1) {
-                cell.introLabel.text = @"作者简介";
-                cell.detailLabel.text = _author_intro;
-                cell.detailLabel.textColor = [UIColor blackColor];
-                return cell;
+            NSString *labelText = _author_intro;
+            UIFont *font = [UIFont systemFontOfSize:15];
+            CGSize strSize = CGSizeMake([UIScreen mainScreen].bounds.size.width-10, MAXFLOAT);
+            NSDictionary *attr= @{NSFontAttributeName:font};
+            CGRect labelFrame = [labelText boundingRectWithSize:strSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            CGFloat labelHeight = labelFrame.size.height;
+            if (labelHeight <= 80) {
+                BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
+                cell.delegate = self;
+                if (indexPath.row == 1) {
+                    cell.introLabel.text = @"作者简介";
+                    cell.detailLabel.text = _author_intro;
+                    cell.detailLabel.textColor = [UIColor blackColor];
+                    cell.pullDownButton.hidden = YES;
+                    return cell;
+                } else {
+                    cell.introLabel.text = @"简介";
+                    cell.detailLabel.text = _summary;
+                    cell.detailLabel.textColor = [UIColor blackColor];
+                    cell.pullDownButton.hidden = YES;
+                    return cell;
+                }
             } else {
-                cell.introLabel.text = @"简介";
-                cell.detailLabel.text = _summary;
-                cell.detailLabel.textColor = [UIColor blackColor];
-                return cell;
+                if (_showDetail) {
+                    BookDetailSecondSectionWithFullContentTableViewCell *fullContentCell = (BookDetailSecondSectionWithFullContentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondFullContentCellIdentiferId];
+                    fullContentCell.delegate = self;
+                    if (indexPath.row == 1) {
+                        fullContentCell.introLabel.text = @"作者简介";
+                        fullContentCell.detailLabel.text = _author_intro;
+                        fullContentCell.detailLabel.textColor = [UIColor blackColor];
+                        fullContentCell.pullUpImageView.image = [UIImage imageNamed:@"up"];
+                        return fullContentCell;
+                    } else {
+                        fullContentCell.introLabel.text = @"简介";
+                        fullContentCell.detailLabel.text = _summary;
+                        fullContentCell.detailLabel.textColor = [UIColor blackColor];
+                        fullContentCell.pullUpImageView.image = [UIImage imageNamed:@"up"];
+                        return fullContentCell;
+                    }
+                } else {
+                    BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
+                    cell.delegate = self;
+                    if (indexPath.row == 1) {
+                        cell.introLabel.text = @"作者简介";
+                        cell.detailLabel.text = _author_intro;
+                        cell.detailLabel.textColor = [UIColor blackColor];
+                        cell.pullDownImageView.image = [UIImage imageNamed:@"down"];
+                        return cell;
+                    } else {
+                        cell.introLabel.text = @"简介";
+                        cell.detailLabel.text = _summary;
+                        cell.detailLabel.textColor = [UIColor blackColor];
+                        cell.pullDownImageView.image = [UIImage imageNamed:@"down"];
+                        return cell;
+                    }
+                }
             }
         }
         case 2: {
@@ -107,10 +161,5 @@
     }
     return [[UITableViewCell alloc] init];
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-}
-
 
 @end
