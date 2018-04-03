@@ -54,7 +54,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC5-tY-isx">
-                        <rect key="frame" x="116" y="101" width="59" height="16"/>
+                        <rect key="frame" x="116" y="101" width="239" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                     <constraint firstItem="BC5-tY-isx" firstAttribute="top" secondItem="qBw-2a-6t1" secondAttribute="bottom" constant="3" id="IEl-Vs-JIJ"/>
                     <constraint firstItem="qBw-2a-6t1" firstAttribute="top" secondItem="atx-lg-8Kl" secondAttribute="bottom" constant="5" id="J0E-Tz-Oum"/>
                     <constraint firstItem="C4H-KR-ITd" firstAttribute="leading" secondItem="atx-lg-8Kl" secondAttribute="trailing" constant="5" id="KBK-jZ-bDD"/>
-                    <constraint firstAttribute="trailing" secondItem="BC5-tY-isx" secondAttribute="trailing" constant="200" id="PWK-ac-hJz"/>
+                    <constraint firstAttribute="trailing" secondItem="BC5-tY-isx" secondAttribute="trailing" constant="20" id="PWK-ac-hJz"/>
                     <constraint firstItem="atx-lg-8Kl" firstAttribute="top" secondItem="HKb-t3-q1T" secondAttribute="bottom" constant="5" id="Ply-fB-9uI"/>
                     <constraint firstAttribute="bottom" secondItem="BC5-tY-isx" secondAttribute="bottom" constant="10" id="QQG-h4-7ay"/>
                     <constraint firstAttribute="bottom" secondItem="WsK-5T-WLo" secondAttribute="bottom" constant="30" id="R9B-lc-45a"/>

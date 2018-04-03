@@ -36,21 +36,26 @@
     _showDetail = NO;
     [_bookDetailTableView reloadData];
 }
+
 -(void)backToSimpleCell {
     _showDetail = YES;
     [_bookDetailTableView reloadData];
 }
+
 -(void)showSecondDetailCell {
     _showSecondDetail = NO;
     [_bookDetailTableView reloadData];
 }
+
 -(void)backToSecondSimpleCell {
     _showSecondDetail = YES;
     [_bookDetailTableView reloadData];
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
