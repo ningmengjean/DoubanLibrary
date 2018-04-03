@@ -11,8 +11,10 @@
 @implementation BookDetailSecondSectionWithFullContentTableViewCell
 
 - (IBAction)backToShortIntroCell:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(backToSimpleCell)]) {
+    if ([_introLabel.text isEqualToString:@"作者简介"]) {
         [self.delegate backToSimpleCell];
+    } else {
+        [self.delegate backToSecondSimpleCell];
     }
 }
 @end

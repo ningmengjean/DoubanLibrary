@@ -11,6 +11,7 @@
 
 @required
 - (void)backToSimpleCell;
+- (void)backToSecondSimpleCell;
 
 @end
 
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *pullUpButton;
 @property (weak, nonatomic) IBOutlet UIImageView *pullUpImageView;
 @property (nonatomic, weak) id <backToSimpleCellDelegate> delegate;
+
 - (IBAction)backToShortIntroCell:(UIButton *)sender;
 
 @end

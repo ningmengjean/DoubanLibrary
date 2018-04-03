@@ -12,7 +12,7 @@
 
 @required
 - (void)showDetailCell;
-
+- (void)showSecondDetailCell;
 @end
 
 @interface BookDetailSecondSectionTableViewCell : UITableViewCell
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton*  pullDownButton;
 @property (weak, nonatomic) IBOutlet UIImageView *pullDownImageView;
 @property (nonatomic, weak) id <showDetailDelegate> delegate;
+
 - (IBAction)showFullContentCell:(UIButton*)sender;
 
 @end

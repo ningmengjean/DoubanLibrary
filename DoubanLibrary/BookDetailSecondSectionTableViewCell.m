@@ -13,8 +13,10 @@
 
 
 - (IBAction)showFullContentCell:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(showDetailCell)]) {
+    if ([_introLabel.text isEqualToString:@"作者简介"]) {
         [self.delegate showDetailCell];
+    } else {
+        [self.delegate showSecondDetailCell];
     }
 }
 @end

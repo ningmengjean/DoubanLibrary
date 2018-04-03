@@ -28,13 +28,24 @@
     [self.bookDetailTableView registerNib:[UINib nibWithNibName:@"BookDetailSecondSectionWithFullContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"BookDetailSecondSectionWithFullContentTableViewCell"];
     self.bookDetailTableView.estimatedRowHeight = 150;
     self.bookDetailTableView.rowHeight = UITableViewAutomaticDimension;
+    self.showDetail = YES;
+    self.showSecondDetail = YES;
 }
+
 -(void)showDetailCell {
-    _showDetail = YES;
+    _showDetail = NO;
     [_bookDetailTableView reloadData];
 }
 -(void)backToSimpleCell {
-    _showDetail = NO;
+    _showDetail = YES;
+    [_bookDetailTableView reloadData];
+}
+-(void)showSecondDetailCell {
+    _showSecondDetail = NO;
+    [_bookDetailTableView reloadData];
+}
+-(void)backToSecondSimpleCell {
+    _showSecondDetail = YES;
     [_bookDetailTableView reloadData];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,7 +99,6 @@
             CGFloat labelHeight = labelFrame.size.height;
             if (labelHeight <= 80) {
                 BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
-                cell.delegate = self;
                 if (indexPath.row == 1) {
                     cell.introLabel.text = @"作者简介";
                     cell.detailLabel.text = _author_intro;
@@ -103,18 +113,20 @@
                     return cell;
                 }
             } else {
-                if (_showDetail) {
-                    BookDetailSecondSectionWithFullContentTableViewCell *fullContentCell = (BookDetailSecondSectionWithFullContentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondFullContentCellIdentiferId];
-                    fullContentCell.delegate = self;
-                    if (indexPath.row == 1) {
+                if (indexPath.row == 1) {
+                    BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
+                    cell.delegate = self;
+                    if (_showDetail) {
+                        cell.introLabel.text = @"作者简介";
+                        cell.detailLabel.text = _author_intro;
+                        cell.detailLabel.textColor = [UIColor blackColor];
+                        cell.pullDownImageView.image = [UIImage imageNamed:@"down"];
+                        return cell;
+                    } else {
+                        BookDetailSecondSectionWithFullContentTableViewCell *fullContentCell = (BookDetailSecondSectionWithFullContentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondFullContentCellIdentiferId];
+                        fullContentCell.delegate = self;
                         fullContentCell.introLabel.text = @"作者简介";
                         fullContentCell.detailLabel.text = _author_intro;
-                        fullContentCell.detailLabel.textColor = [UIColor blackColor];
-                        fullContentCell.pullUpImageView.image = [UIImage imageNamed:@"up"];
-                        return fullContentCell;
-                    } else {
-                        fullContentCell.introLabel.text = @"简介";
-                        fullContentCell.detailLabel.text = _summary;
                         fullContentCell.detailLabel.textColor = [UIColor blackColor];
                         fullContentCell.pullUpImageView.image = [UIImage imageNamed:@"up"];
                         return fullContentCell;
@@ -122,18 +134,20 @@
                 } else {
                     BookDetailSecondSectionTableViewCell *cell = (BookDetailSecondSectionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondCellIdentiferId];
                     cell.delegate = self;
-                    if (indexPath.row == 1) {
-                        cell.introLabel.text = @"作者简介";
-                        cell.detailLabel.text = _author_intro;
-                        cell.detailLabel.textColor = [UIColor blackColor];
-                        cell.pullDownImageView.image = [UIImage imageNamed:@"down"];
-                        return cell;
-                    } else {
+                    if (_showSecondDetail) {
                         cell.introLabel.text = @"简介";
                         cell.detailLabel.text = _summary;
                         cell.detailLabel.textColor = [UIColor blackColor];
                         cell.pullDownImageView.image = [UIImage imageNamed:@"down"];
                         return cell;
+                    } else {
+                        BookDetailSecondSectionWithFullContentTableViewCell *fullContentCell = (BookDetailSecondSectionWithFullContentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondFullContentCellIdentiferId];
+                        fullContentCell.delegate = self;
+                        fullContentCell.introLabel.text = @"简介";
+                        fullContentCell.detailLabel.text = _summary;
+                        fullContentCell.detailLabel.textColor = [UIColor blackColor];
+                        fullContentCell.pullUpImageView.image = [UIImage imageNamed:@"up"];
+                        return fullContentCell;
                     }
                 }
             }

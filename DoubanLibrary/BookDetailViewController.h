@@ -26,6 +26,7 @@
 @property (nonatomic,strong) NSArray * _Nullable tags;
 @property (nonatomic,strong) UIImage * _Nullable starImage;
 @property (nonatomic,assign) BOOL showDetail;
+@property (nonatomic,assign) BOOL showSecondDetail;
 
 typedef void(^collecionTagHandler)(NSString* _Nonnull tag,NSInteger start);
 @property (nonatomic, copy) collecionTagHandler _Nonnull collecionTagHandler;
